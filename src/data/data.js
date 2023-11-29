@@ -80,6 +80,11 @@ const listMenu = [
     icon: "list",
   },
   {
+    name: "Test Loading",
+    path: "/testloading",
+    icon: "list",
+  },
+  {
     name: "Test Page",
     path: "/testpage",
     icon: "list",

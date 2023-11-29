@@ -12,10 +12,8 @@ import {
   Chip,
   Tooltip,
 } from "@nextui-org/react";
-import { EditIcon } from "@/icons/EditIcon";
-import { DeleteIcon } from "@/icons/DeleteIcon";
-import { EyeIcon } from "@/icons/EyeIcon";
 import { columns, users } from "@/data/data";
+import { EditIcon, DeleteIcon, EyeIcon } from "@/icons";
 
 const statusColorMap = {
   active: "success",

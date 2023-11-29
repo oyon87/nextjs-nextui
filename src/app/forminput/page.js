@@ -6,9 +6,8 @@ import { Select, SelectItem } from "@nextui-org/react";
 import { RadioGroup, Radio } from "@nextui-org/react";
 import { Textarea } from "@nextui-org/react";
 import { CheckboxGroup, Checkbox } from "@nextui-org/react";
-import { EyeFilledIcon } from "@/icons/EyeFilledIcon";
-import { EyeSlashFilledIcon } from "@/icons/EyeSlashFilledIcon";
 import { animals } from "@/data/data";
+import { EyeFilledIcon, EyeSlashFilledIcon } from "@/icons";
 
 export default function formInput() {
   const [isVisible, setIsVisible] = React.useState(false);

@@ -1,11 +1,11 @@
 "use client";
 
 import React from "react";
-import { HomeIcon } from "@/icons/HomeIcon";
-import { ListIcon } from "@/icons/ListIcon";
 import { usePathname } from "next/navigation";
 import { Link } from "@nextui-org/react";
 import { listMenu } from "@/data/data";
+
+import { HomeIcon, ListIcon } from "@/icons";
 
 export default function SidebarMenu() {
   const pathname = usePathname();

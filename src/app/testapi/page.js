@@ -9,24 +9,23 @@ import {
   TableRow,
   TableCell,
   Pagination,
-  Skeleton,
 } from "@nextui-org/react";
+import TableSkeleton from "./tableskeleton";
+import { getProducts } from "@/services/product/product";
+import { ROW_PER_PAGE } from "@/constant/pagination";
+import { startPage, totalPages } from "@/utility/pagination";
 
-export default function testAPI() {
+export default function TestAPI() {
   const [page, setPage] = React.useState(1);
-  const [pages, setPages] = React.useState(1);
+  const [pages, setPages] = React.useState(0);
   const [products, setProducts] = React.useState([]);
-  const rowsPerPage = 10;
 
   const fetchData = async () => {
-    const start = (page - 1) * rowsPerPage;
-    const response = await fetch(
-      `https://dummyjson.com/products?limit=10&skip=${start}&select=title,price,brand,category`
-    );
-    const data = await response.json();
+    const start = startPage(page);
+    const data = await getProducts(ROW_PER_PAGE, start);
     setProducts(data.products);
-    const totalPages = Math.ceil(Number(data.total) / rowsPerPage);
-    setPages(totalPages);
+    const totalPage = totalPages(data.total);
+    setPages(totalPage);
   };
 
   React.useEffect(() => {
@@ -72,79 +71,7 @@ export default function testAPI() {
           </TableBody>
         </Table>
       ) : (
-        <Table
-          aria-label="Example static collection table"
-          bottomContent={
-            <div className="flex w-full justify-center">
-              <Pagination isCompact showControls showShadow color="secondary" page="0" total="0" />
-            </div>
-          }
-        >
-          <TableHeader>
-            <TableColumn>TITLE</TableColumn>
-            <TableColumn>PRICE</TableColumn>
-            <TableColumn>BRAND</TableColumn>
-            <TableColumn>CATEGORY</TableColumn>
-          </TableHeader>
-          <TableBody>
-            <TableRow key="1">
-              <TableCell>
-                <Skeleton className="w-full rounded-full h-5" />
-              </TableCell>
-              <TableCell>
-                <Skeleton className="w-full rounded-full h-5" />
-              </TableCell>
-              <TableCell>
-                <Skeleton className="w-full rounded-full h-5" />
-              </TableCell>
-              <TableCell>
-                <Skeleton className="w-full rounded-full h-5" />
-              </TableCell>
-            </TableRow>
-            <TableRow key="2">
-              <TableCell>
-                <Skeleton className="w-full rounded-full h-5" />
-              </TableCell>
-              <TableCell>
-                <Skeleton className="w-full rounded-full h-5" />
-              </TableCell>
-              <TableCell>
-                <Skeleton className="w-full rounded-full h-5" />
-              </TableCell>
-              <TableCell>
-                <Skeleton className="w-full rounded-full h-5" />
-              </TableCell>
-            </TableRow>
-            <TableRow key="3">
-              <TableCell>
-                <Skeleton className="w-full rounded-full h-5" />
-              </TableCell>
-              <TableCell>
-                <Skeleton className="w-full rounded-full h-5" />
-              </TableCell>
-              <TableCell>
-                <Skeleton className="w-full rounded-full h-5" />
-              </TableCell>
-              <TableCell>
-                <Skeleton className="w-full rounded-full h-5" />
-              </TableCell>
-            </TableRow>
-            <TableRow key="4">
-              <TableCell>
-                <Skeleton className="w-full rounded- full h-5" />
-              </TableCell>
-              <TableCell>
-                <Skeleton className="w-full rounded- full h-5" />
-              </TableCell>
-              <TableCell>
-                <Skeleton className="w-full rounded- full h-5" />
-              </TableCell>
-              <TableCell>
-                <Skeleton className="w-full rounded- full h-5" />
-              </TableCell>
-            </TableRow>
-          </TableBody>
-        </Table>
+        <TableSkeleton />
       )}
     </>
   );
