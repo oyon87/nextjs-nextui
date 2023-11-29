@@ -1,0 +1,42 @@
+"use client";
+
+import React from "react";
+import { getProducts } from "@/services/product/product";
+import { ROW_PER_PAGE } from "@/constant/pagination";
+import { startPage, totalPages } from "@/utility/pagination";
+import TableDefault from "@/components/TableDefault/TableDefault";
+
+function ProductListing() {
+  const tableHeaders = ["TITLE", "PRICE", "BRAND", "CATEGORY"];
+
+  const [page, setPage] = React.useState(1);
+  const [pages, setPages] = React.useState(1);
+  const [products, setProducts] = React.useState([]);
+
+  const fetchData = async () => {
+    const start = startPage(page);
+    const data = await getProducts(ROW_PER_PAGE, start);
+    setProducts(data.products);
+    const totalPage = totalPages(data.total);
+    setPages(totalPage);
+  };
+
+  React.useEffect(() => {
+    fetchData();
+  }, [page]);
+
+  return (
+    <>
+      <TableDefault
+        ariaLabel="Products Table"
+        tableHeaders={tableHeaders}
+        tableRows={products}
+        page={page}
+        pages={pages}
+        onChange={(page) => setPage(page)}
+      />
+    </>
+  );
+}
+
+export default ProductListing;

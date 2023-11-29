@@ -65,6 +65,11 @@ const listMenu = [
     icon: "home",
   },
   {
+    name: "Products",
+    path: "/products",
+    icon: "list",
+  },
+  {
     name: "Table",
     path: "/table",
     icon: "list",
