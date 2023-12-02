@@ -4,6 +4,10 @@ import NextProviders from "./NextProviders";
 import NavbarMenu from "@/components/NavbarMenu/NavbarMenu";
 import SidebarMenu from "@/components/SidebarMenu/SidebarMenu";
 
+import "@fortawesome/fontawesome-svg-core/styles.css";
+import { config } from "@fortawesome/fontawesome-svg-core";
+config.autoAddCss = false;
+
 const inter = Inter( { subsets: [ "latin" ] } );
 
 export const metadata = {
@@ -16,15 +20,6 @@ export default function RootLayout ( { children } ) {
     <html lang="en">
       <body className={ inter.className }>
         <NextProviders>
-          {/* <div className="dark text-foreground">
-            <NavbarMenu />
-          </div>
-          <main>
-            <div className="grid grid-cols-main dark text-foreground">
-              <SidebarMenu />
-              <div className="m-4 light text-foreground">{children}</div>
-            </div>
-          </main> */}
           <div className="grid grid-rows-mobile-layout md:grid-rows-desktop-layout md:grid-cols-desktop-layout">
             <header className="md:order-2 dark text-foreground">
               <NavbarMenu />
@@ -33,7 +28,7 @@ export default function RootLayout ( { children } ) {
               <SidebarMenu />
             </aside>
             <main className="m-4 md:order-3 light text-foreground">
-              <h1>MAIN</h1>
+              { children }
             </main>
           </div>
         </NextProviders>

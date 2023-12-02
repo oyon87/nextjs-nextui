@@ -1,32 +1,67 @@
 "use client";
 
-import React from "react";
+import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import { Link } from "@nextui-org/react";
 import { listMenu } from "@/data/data";
-
-import { HomeIcon, ListIcon } from "@/icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faX, faBars, faHouse, faList } from "@fortawesome/free-solid-svg-icons";
+import { SCREEN } from "@/constant/deault";
 
 export default function SidebarMenu () {
   const pathname = usePathname();
+  const [ isMobileOpen, setIsMobileOpen ] = useState( true );
+  const [ isMobile, setIsMobile ] = useState( false );
 
-  const renderIcon = React.useCallback( ( icon ) => {
+  const mobileToggleMenu = () => {
+    setIsMobileOpen( !isMobileOpen );
+  }
+
+  const checkScreen = () => {
+    if ( window.innerWidth >= SCREEN.TABLET ) {
+      setIsMobile( false );
+      setIsMobileOpen( true );
+    } else {
+      setIsMobile( true );
+      setIsMobileOpen( false );
+    }
+  }
+
+  const renderIcon = ( icon ) => {
     switch ( icon ) {
       case "home":
-        return <HomeIcon fill="grey" />;
+        return <FontAwesomeIcon icon={ faHouse } />;
       case "list":
-        return <ListIcon fill="grey" />;
+        return <FontAwesomeIcon icon={ faList } />;
       default:
         return icon;
     }
-  } );
+  }
+
+  useEffect( () => {
+    window.addEventListener( "resize", () => {
+      checkScreen();
+    } )
+    checkScreen();
+  }, [] )
 
   return (
-    <div className="bg-background/70 md:min-h-screen  ">
-      <ul>
+    <div className="bg-background/70 md:min-h-screen">
+      <div className="h-10 md:h-16 flex items-center justify-end pr-5">
+        { isMobile ?
+          <div className="cursor-pointer" onClick={ mobileToggleMenu }>
+            { isMobileOpen ? <FontAwesomeIcon icon={ faX } /> : <FontAwesomeIcon icon={ faBars } /> }
+          </div>
+          :
+          <div className="cursor-pointer">
+            DESKTOP
+          </div>
+        }
+      </div>
+      <ul className={ ( isMobileOpen ? "h-fit" : "h-0" ) }>
         { listMenu.map( ( list, index ) => {
           return (
-            <li className="px-4 py-2" key={ index }>
+            <li className={ "px-4 py-2 " + ( isMobileOpen ? "" : "hidden" ) } key={ index }>
               <Link
                 href={ list.path }
                 className="flex items-center"
@@ -34,7 +69,7 @@ export default function SidebarMenu () {
                 isBlock
               >
                 <span className="pr-2">{ renderIcon( list.icon ) }</span>
-                { list.name }
+                <span>{ list.name }</span>
               </Link>
             </li>
           );
