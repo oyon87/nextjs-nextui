@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 // tailwind.config.js
-const { nextui } = require("@nextui-org/react");
+const { nextui } = require( "@nextui-org/react" );
 
 module.exports = {
   content: [
@@ -17,12 +17,18 @@ module.exports = {
       },
       gridTemplateColumns: {
         "main": "200px 1fr",
+        "desktop-layout": "200px 1fr",
+        "desktop-layout-toggle": "50px 1fr",
+      },
+      gridTemplateRows: {
+        "desktop-layout": "64px 1fr",
+        "mobile-layout": "repeat(3, auto)",
       },
     },
   },
   darkMode: "class",
   plugins: [
-    nextui({
+    nextui( {
       prefix: "nextui", // prefix for themes variables
       addCommonColors: false, // override common colors (e.g. "blue", "green", "pink").
       defaultTheme: "light", // default theme from the themes object
@@ -39,6 +45,6 @@ module.exports = {
         },
         // ... custom themes
       },
-    }),
+    } ),
   ],
 };

@@ -7,11 +7,11 @@ import { listMenu } from "@/data/data";
 
 import { HomeIcon, ListIcon } from "@/icons";
 
-export default function SidebarMenu() {
+export default function SidebarMenu () {
   const pathname = usePathname();
 
-  const renderIcon = React.useCallback((icon) => {
-    switch (icon) {
+  const renderIcon = React.useCallback( ( icon ) => {
+    switch ( icon ) {
       case "home":
         return <HomeIcon fill="grey" />;
       case "list":
@@ -19,26 +19,26 @@ export default function SidebarMenu() {
       default:
         return icon;
     }
-  });
+  } );
 
   return (
-    <div className="bg-background/70" style={{ minHeight: "calc(100vh - 64px)" }}>
+    <div className="bg-background/70 md:min-h-screen  ">
       <ul>
-        {listMenu.map((list, index) => {
+        { listMenu.map( ( list, index ) => {
           return (
-            <li className="px-6 py-2" key={index}>
+            <li className="px-4 py-2" key={ index }>
               <Link
-                href={list.path}
+                href={ list.path }
                 className="flex items-center"
-                color={`${pathname === list.path ? "warning" : "foreground"}`}
+                color={ `${ pathname === list.path ? "warning" : "foreground" }` }
                 isBlock
               >
-                <span className="pr-2">{renderIcon(list.icon)}</span>
-                {list.name}
+                <span className="pr-2">{ renderIcon( list.icon ) }</span>
+                { list.name }
               </Link>
             </li>
           );
-        })}
+        } ) }
       </ul>
     </div>
   );
