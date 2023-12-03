@@ -17,7 +17,7 @@ module.exports = {
       },
       gridTemplateColumns: {
         "main": "200px 1fr",
-        "desktop-layout": "200px 1fr",
+        "desktop-layout": "auto 1fr",
         "desktop-layout-toggle": "50px 1fr",
       },
       gridTemplateRows: {

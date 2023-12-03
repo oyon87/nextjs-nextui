@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import {
   Navbar,
@@ -15,7 +15,7 @@ export default function NavbarMenu() {
   return (
     <Navbar maxWidth="full">
       <NavbarBrand>
-        <p className="font-bold text-inherit">LOGO</p>
+        <p className="font-bold text-inherit">YON STORE</p>
       </NavbarBrand>
 
       <NavbarContent as="div" justify="end">

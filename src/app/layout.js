@@ -20,11 +20,11 @@ export default function RootLayout ( { children } ) {
     <html lang="en">
       <body className={ inter.className }>
         <NextProviders>
-          <div className="grid grid-rows-mobile-layout md:grid-rows-desktop-layout md:grid-cols-desktop-layout">
+          <div className="grid grid-cols-1 grid-rows-mobile-layout md:grid-rows-desktop-layout md:grid-cols-desktop-layout">
             <header className="md:order-2 dark text-foreground">
               <NavbarMenu />
             </header>
-            <aside className="md:row-span-2 md:order-1 dark text-foreground">
+            <aside className="md:row-span-2 md:order-1 dark text-foreground md:min-h-screen">
               <SidebarMenu />
             </aside>
             <main className="m-4 md:order-3 light text-foreground">
