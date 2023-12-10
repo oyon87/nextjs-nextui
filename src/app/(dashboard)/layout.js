@@ -1,10 +1,23 @@
-function ProductsLayout({ children }) {
+// Components
+import NavbarMenu from "@/components/NavbarMenu/NavbarMenu";
+import SidebarMenu from "@/components/SidebarMenu/SidebarMenu";
+
+function DashboardLayout({ children }) {
   return (
     <>
-      <h1 className="mb-3">Dashboard Layout</h1>
-      {children}
+      <div className="grid grid-cols-1 grid-rows-mobile-layout md:grid-rows-desktop-layout md:grid-cols-desktop-layout">
+        <header className="md:order-2 dark text-foreground">
+          <NavbarMenu />
+        </header>
+        <aside className="md:row-span-2 md:order-1 dark text-foreground md:min-h-screen">
+          <SidebarMenu />
+        </aside>
+        <main className="m-4 md:order-3 light text-foreground">
+          {children}
+        </main>
+      </div>
     </>
   );
 }
 
-export default ProductsLayout;
+export default DashboardLayout;
