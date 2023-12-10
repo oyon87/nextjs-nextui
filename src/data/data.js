@@ -79,21 +79,6 @@ const listMenu = [
     path: "/forminput",
     icon: "list",
   },
-  {
-    name: "Test API",
-    path: "/testapi",
-    icon: "list",
-  },
-  {
-    name: "Test Loading",
-    path: "/testloading",
-    icon: "list",
-  },
-  {
-    name: "Test Page",
-    path: "/testpage",
-    icon: "list",
-  },
 ];
 
 const animals = [
