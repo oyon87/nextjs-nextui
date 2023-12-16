@@ -16,10 +16,14 @@ function ProductListing() {
 
   const fetchData = async () => {
     const start = startPage(page);
-    const data = await getProducts(ROW_PER_PAGE, start);
-    setProducts(data.products);
-    const totalPage = totalPages(data.total);
-    setPages(totalPage);
+    const { message, products } = await getProducts(ROW_PER_PAGE, start);
+    if (message === 'success') {
+      setProducts(products.products);
+      const totalPage = totalPages(products.total);
+      setPages(totalPage);
+    } else {
+      alert(products.message);
+    }
   };
 
   React.useEffect(() => {
