@@ -1,12 +1,36 @@
-const PRODUCT_URL = process.env.NEXT_PUBLIC_API_URL + "/products";
+'use server';
 
-const getProducts = async (limit, skip) => {
-  let response;
-  await fetch(`${PRODUCT_URL}?limit=${limit}&skip=${skip}&select=title,price,brand,category`)
-    .then((res) => res.json())
-    .then(data => response = data);
+import { cookies } from 'next/headers';
 
-  return response;
+const AUTH_URL = process.env.NEXT_PUBLIC_API_URL + process.env.NEXT_PUBLIC_LOGIN_PATH;
+const data = {
+  status: ''
 };
 
-export { getProducts };
+const getUser = async (userName, password) => {
+  cookies().delete('auth');
+
+  await fetch(AUTH_URL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      username: userName,
+      password: password,
+      // expiresInMins: 60, // optional
+    })
+  })
+    .then(res => {
+      data.status = res.status;
+      return res.json();
+    })
+    .then(response => {
+      if (response.id) {
+        cookies().set('auth', JSON.stringify(response));
+      }
+      data.auth = response;
+    });
+
+  return data;
+};
+
+export { getUser };

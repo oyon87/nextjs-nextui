@@ -66,7 +66,7 @@ const listMenu = [
   },
   {
     name: "Products",
-    path: "/products",
+    path: "/dashboard/products",
     icon: "list",
   },
   {

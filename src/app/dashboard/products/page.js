@@ -16,8 +16,8 @@ function ProductListing() {
 
   const fetchData = async () => {
     const start = startPage(page);
-    const { message, products } = await getProducts(ROW_PER_PAGE, start);
-    if (message === 'success') {
+    const { status, products } = await getProducts(ROW_PER_PAGE, start);
+    if (status === 200) {
       setProducts(products.products);
       const totalPage = totalPages(products.total);
       setPages(totalPage);
