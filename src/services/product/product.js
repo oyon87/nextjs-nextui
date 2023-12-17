@@ -1,13 +1,13 @@
-'use server';
+'use client';
 
-import { headers } from 'next/headers';
+// import { headers } from 'next/headers';
 
 // const PRODUCT_URL = process.env.NEXT_PUBLIC_API_URL + process.env.NEXT_PUBLIC_PRODUCTS_PATH;
 const PRODUCT_URL = 'https://dummyjson.com/products';
-const headersList = headers();
-const authorization = headersList.get('Authorization') || '';
+// const headersList = headers();
+// const authorization = headersList.get('Authorization') || '';
 const header = {
-  'Authorization': authorization,
+  // 'Authorization': authorization,
   'Content-Type': 'application/json'
 };
 
