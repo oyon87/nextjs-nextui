@@ -1,14 +1,14 @@
 import { NextResponse } from 'next/server';
 
 export async function middleware(request) {
-  const auth = request.cookies.get('auth');
+  const auth = await request.cookies.get('auth');
 
   if (auth && request.nextUrl.pathname === '/login') {
     return NextResponse.redirect(new URL("/dashboard", request.url));
   } else if (!auth && request.nextUrl.pathname !== '/login') {
     return NextResponse.redirect(new URL("/login", request.url));
   } else if (auth) {
-    const dataAuth = JSON.parse(auth.value);
+    const dataAuth = JSON.parse(auth?.value);
     const requestHeaders = new Headers(request.headers);
 
     requestHeaders.set('Authorization', `Bearer ${dataAuth.token}`);
