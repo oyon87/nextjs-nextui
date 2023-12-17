@@ -17,13 +17,16 @@ function ProductListing() {
   const fetchData = async () => {
     const start = startPage(page);
     const data = await getProducts(ROW_PER_PAGE, start);
-    if (data.status === 200) {
-      setProducts(data.products.products);
-      const totalPage = totalPages(data.products.total);
-      setPages(totalPage);
-    } else {
-      alert(data.products.message);
-    }
+    setProducts(data.products.products);
+    const totalPage = totalPages(data.products.total);
+    setPages(totalPage);
+    // if (data.status === 200) {
+    //   setProducts(data.products.products);
+    //   const totalPage = totalPages(data.products.total);
+    //   setPages(totalPage);
+    // } else {
+    //   alert(data.products.message);
+    // }
   };
 
   React.useEffect(() => {
