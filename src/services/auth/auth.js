@@ -12,7 +12,7 @@ const getUser = async (userName, password) => {
 
   cookies().delete('auth');
 
-  await fetch(AUTH_URL, {
+  const response = await fetch(AUTH_URL, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
@@ -21,16 +21,14 @@ const getUser = async (userName, password) => {
       // expiresInMins: 60, // optional
     })
   })
-    .then(res => {
-      data.status = res.status;
-      return res.json();
-    })
-    .then(response => {
-      if (response.id) {
-        cookies().set('auth', JSON.stringify(response));
-      }
-      data.auth = response;
-    });
+    .then(res => res);
+
+  data.status = response.status;
+  data.auth = await response.json();
+
+  if (response.status === 200) {
+    cookies().set('auth', JSON.stringify(data.auth));
+  }
 
   return data;
 };

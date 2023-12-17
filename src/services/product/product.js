@@ -16,12 +16,11 @@ const getProducts = async (limit, skip) => {
     status: ''
   };
 
-  await fetch(`${PRODUCT_URL}?limit=${limit}&skip=${skip}&select=title,price,brand,category`, { headers: header })
-    .then((res) => {
-      data.status = res.status;
-      return res.json();
-    })
-    .then(response => data.products = response);
+  const response = await fetch(`${PRODUCT_URL}?limit=${limit}&skip=${skip}&select=title,price,brand,category`, { headers: header })
+    .then(res => res);
+
+  data.status = response.status;
+  data.products = await response.json();
 
   return data;
 };
