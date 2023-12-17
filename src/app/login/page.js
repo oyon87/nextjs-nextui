@@ -18,7 +18,7 @@ export default function Login() {
 
     if (status === 200) {
       setIsError(false);
-      // router.push('/dashboard');
+      router.push('/dashboard');
     } else {
       setIsError(true);
       setErrorMessage(auth.message);
