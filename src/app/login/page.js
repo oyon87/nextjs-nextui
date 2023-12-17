@@ -14,14 +14,14 @@ export default function Login() {
   const [errorMessage, setErrorMessage] = useState('Shomething Wrong...!');
 
   const handleSubmit = async () => {
-    const data = await getUser(userName, password);
+    const { status, auth } = await getUser(userName, password);
 
-    if (data.status === 200) {
+    if (status === 200) {
       setIsError(false);
       router.push('/dashboard');
     } else {
       setIsError(true);
-      setErrorMessage(data.auth.message);
+      setErrorMessage(auth.message);
     }
   };
 

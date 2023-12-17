@@ -1,6 +1,6 @@
-'use server';
+'use client';
 
-import { cookies } from 'next/headers';
+import { setAuthCookies } from '@/lib/cookies-auth';
 
 const AUTH_URL = process.env.NEXT_PUBLIC_API_URL + process.env.NEXT_PUBLIC_LOGIN_PATH;
 
@@ -9,8 +9,6 @@ const getUser = async (userName, password) => {
     auth: '',
     status: ''
   };
-
-  cookies().delete('auth');
 
   const response = await fetch(AUTH_URL, {
     method: 'POST',
@@ -27,7 +25,7 @@ const getUser = async (userName, password) => {
   data.auth = await response.json();
 
   if (response.status === 200) {
-    cookies().set('auth', JSON.stringify(data.auth));
+    setAuthCookies(data.auth);
   }
 
   return data;
