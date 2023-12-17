@@ -3,11 +3,13 @@
 import { cookies } from 'next/headers';
 
 const AUTH_URL = process.env.NEXT_PUBLIC_API_URL + process.env.NEXT_PUBLIC_LOGIN_PATH;
-const data = {
-  status: ''
-};
 
 const getUser = async (userName, password) => {
+  const data = {
+    auth: '',
+    status: ''
+  };
+
   cookies().delete('auth');
 
   await fetch(AUTH_URL, {

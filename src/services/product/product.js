@@ -10,11 +10,12 @@ const header = {
   'Content-Type': 'application/json'
 };
 
-const data = {
-  status: ''
-};
-
 const getProducts = async (limit, skip) => {
+  const data = {
+    products: '',
+    status: ''
+  };
+
   await fetch(`${PRODUCT_URL}?limit=${limit}&skip=${skip}&select=title,price,brand,category`, { headers: header })
     .then((res) => {
       data.status = res.status;
