@@ -1,7 +1,7 @@
 "use client";
 
 import { getUser } from "@/services/auth/auth";
-import { Card, CardBody, Input, Button, CardHeader, Divider } from "@nextui-org/react";
+import { Card, CardBody, Input, Button, CardHeader } from "@nextui-org/react";
 import { useState } from "react";
 import { useRouter } from 'next/navigation';
 
