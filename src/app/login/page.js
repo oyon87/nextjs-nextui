@@ -15,7 +15,6 @@ export default function Login() {
 
   const handleSubmit = async () => {
     const data = await getUser(userName, password);
-    console.log(data);
 
     if (data.status === 200) {
       setIsError(false);

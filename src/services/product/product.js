@@ -2,7 +2,8 @@
 
 import { headers } from 'next/headers';
 
-const PRODUCT_URL = process.env.NEXT_PUBLIC_API_URL + process.env.NEXT_PUBLIC_PRODUCTS_PATH;
+// const PRODUCT_URL = process.env.NEXT_PUBLIC_API_URL + process.env.NEXT_PUBLIC_PRODUCTS_PATH;
+const PRODUCT_URL = 'https://dummyjson.com/products';
 const headersList = headers();
 const authorization = headersList.get('Authorization') || '';
 const header = {
