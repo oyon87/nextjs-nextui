@@ -16,13 +16,13 @@ function ProductListing() {
 
   const fetchData = async () => {
     const start = startPage(page);
-    const { status, products } = await getProducts(ROW_PER_PAGE, start);
-    if (status === 200) {
-      setProducts(products.products);
-      const totalPage = totalPages(products.total);
+    const data = await getProducts(ROW_PER_PAGE, start);
+    if (data.status === 200) {
+      setProducts(data.products.products);
+      const totalPage = totalPages(data.products.total);
       setPages(totalPage);
     } else {
-      alert(products.message);
+      alert(data.products.message);
     }
   };
 
