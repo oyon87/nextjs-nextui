@@ -12,7 +12,7 @@ const header = {
 };
 
 const getProducts = async (limit, skip) => {
-  const data = {
+  let data = {
     products: '',
     status: ''
   };
