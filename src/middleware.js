@@ -1,7 +1,9 @@
 import { NextResponse } from 'next/server';
+import { cookies } from 'next/headers';
 
 export async function middleware(request) {
-  const auth = await request.cookies.get('auth');
+  const cookieStore = cookies();
+  const auth = cookieStore.get('auth');
 
   if (auth && request.nextUrl.pathname === '/login') {
     return NextResponse.redirect(new URL("/dashboard", request.url));
