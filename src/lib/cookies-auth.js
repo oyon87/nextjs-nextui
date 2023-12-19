@@ -1,8 +1,16 @@
-// import { cookies } from 'next/headers';
-import { setCookie } from 'cookies-next';
+import { getCookie, setCookie } from "cookies-next";
 
 const setAuthCookies = (auth) => {
-  setCookie('auth', JSON.stringify(auth));
+  setCookie("auth", JSON.stringify(auth), { secure: true });
+
+  return true;
 };
 
-export { setAuthCookies };
+const getBarerAuthorization = () => {
+  const auth = getCookie("auth");
+  const dataAuth = JSON.parse(auth);
+
+  return dataAuth.token;
+};
+
+export { setAuthCookies, getBarerAuthorization };
