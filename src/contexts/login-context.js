@@ -5,11 +5,7 @@ import { createContext, useContext, useState } from "react";
 const LoginContext = createContext(null);
 
 function LoginContextProvider({ children }) {
-  const [login, setLogin] = useState({
-    name: "test",
-    token: "asdasdasd",
-    isLogin: true
-  });
+  const [login, setLogin] = useState({});
 
   return (
     <LoginContext.Provider value={{ login, setLogin }}>
@@ -21,7 +17,9 @@ function LoginContextProvider({ children }) {
 export function useLoginContext() {
   const context = useContext(LoginContext);
   if (!context) {
-    throw new Error("useLoginContent must be used within a LoginContentProvider");
+    throw new Error(
+      "useLoginContent must be used within a LoginContentProvider"
+    );
   }
 
   return context;
