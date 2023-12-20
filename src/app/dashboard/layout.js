@@ -1,27 +1,27 @@
 "use client";
 
-import { hasCookie } from "cookies-next";
-import { useEffect, useCallback } from "react";
-import { getAuthCookies } from "@/lib/cookies-auth";
-import { useLoginContext } from "@/contexts/login-context";
+// import { hasCookie } from "cookies-next";
+// import { useEffect, useCallback } from "react";
+// import { getAuthCookies } from "@/lib/cookies-auth";
+// import { useLoginContext } from "@/contexts/login-context";
 
 // Components
 import NavbarMenu from "@/components/NavbarMenu/NavbarMenu";
 import SidebarMenu from "@/components/SidebarMenu/SidebarMenu";
 
 function DashboardLayout({ children }) {
-  const { setLogin } = useLoginContext();
+  // const { setLogin } = useLoginContext();
 
-  const setLoginContext = useCallback(() => {
-    if (hasCookie("auth")) {
-      const dataAuth = getAuthCookies();
-      setLogin(dataAuth);
-    }
-  });
+  // const setLoginContext = useCallback(() => {
+  //   if (hasCookie("auth")) {
+  //     const dataAuth = getAuthCookies();
+  //     setLogin(dataAuth);
+  //   }
+  // });
 
-  useEffect(() => {
-    setLoginContext();
-  }, []);
+  // useEffect(() => {
+  //   setLoginContext();
+  // }, []);
 
   return (
     <>

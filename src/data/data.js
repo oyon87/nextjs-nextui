@@ -5,6 +5,11 @@ const listMenu = [
     icon: "home",
   },
   {
+    name: "Dashboard",
+    path: "/dashboard",
+    icon: "list",
+  },
+  {
     name: "Products",
     path: "/dashboard/products",
     icon: "list",

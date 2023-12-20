@@ -1,9 +1,8 @@
-"use client";
+"use server";
 
 import { setAuthCookies } from "@/lib/cookies-auth";
 
-const AUTH_URL =
-  process.env.NEXT_PUBLIC_API_URL + process.env.NEXT_PUBLIC_LOGIN_PATH;
+const AUTH_URL = process.env.NEXT_PUBLIC_API_URL + process.env.NEXT_PUBLIC_LOGIN_PATH;
 
 const getUser = async (userName, password) => {
   const data = {

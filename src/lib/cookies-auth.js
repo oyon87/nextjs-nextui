@@ -1,22 +1,31 @@
-import { getCookie, setCookie } from "cookies-next";
+"use server";
+
+import { cookies } from "next/headers";
+// import { getCookie, setCookie } from "cookies-next";
 
 const setAuthCookies = (auth) => {
-  setCookie("auth", JSON.stringify(auth), { secure: true, sameSite: "lax" });
+  cookies().set("auth", JSON.stringify(auth), { httpOnly: true });
 
   return true;
 };
 
-const getAuthCookies = () => {
-  const auth = getCookie("auth");
-  const dataAuth = JSON.parse(auth);
+// const setAuthCookies = (auth) => {
+//   setCookie("auth", JSON.stringify(auth), { secure: true, sameSite: "lax" });
 
-  return dataAuth;
-};
+//   return true;
+// };
 
-const getBarerAuthorization = () => {
-  const dataAuth = getAuthCookies();
+// const getAuthCookies = () => {
+//   const auth = getCookie("auth");
+//   const dataAuth = JSON.parse(auth);
 
-  return dataAuth.token;
-};
+//   return dataAuth;
+// };
 
-export { setAuthCookies, getBarerAuthorization, getAuthCookies };
+// const getBarerAuthorization = () => {
+//   const dataAuth = getAuthCookies();
+
+//   return dataAuth.token;
+// };
+
+export { setAuthCookies };
