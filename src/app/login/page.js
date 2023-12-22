@@ -1,9 +1,8 @@
 "use client";
 
 import { Card, CardBody, Input, Button, CardHeader } from "@nextui-org/react";
-import { Suspense, useState } from "react";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { useLoginContext } from "@/contexts/login-context";
 
 export default function Login() {
   const size = "sm";
@@ -11,7 +10,8 @@ export default function Login() {
   const [userName, setUserName] = useState("kminchelle");
   const [password, setPassword] = useState("0lelplR");
   const [isError, setIsError] = useState(false);
-  const [errorMessage, setErrorMessage] = useState("Shomething Wrong...!");
+  const [errorMessage, setErrorMessage] = useState("Something Wrong...!");
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = async () => {
     const response = await fetch("/api/login", {
@@ -26,6 +26,7 @@ export default function Login() {
 
     if (response.ok) {
       setIsError(false);
+      setIsLoading(true);
       router.push("/dashboard");
     } else {
       setIsError(true);
@@ -57,11 +58,9 @@ export default function Login() {
             placeholder="Enter your password"
             size={size}
           />
-          <Suspense fallback={<span>LOADING...!</span>}>
-            <Button type="submit" color="primary" className="mt-2" size={size}>
-              Sign in
-            </Button>
-          </Suspense>
+          <Button type="submit" color="primary" className="mt-2" size={size} isLoading={isLoading ? true : false}>
+            Sign in
+          </Button>
         </CardBody>
       </form>
     </Card>
