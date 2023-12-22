@@ -1,16 +1,16 @@
 "use client";
 
-// import { hasCookie } from "cookies-next";
-// import { useEffect, useCallback } from "react";
+import { hasCookie } from "cookies-next";
+import { useEffect, useCallback } from "react";
 // import { getAuthCookies } from "@/lib/cookies-auth";
-// import { useLoginContext } from "@/contexts/login-context";
+import { useLoginContext } from "@/contexts/login-context";
 
 // Components
 import NavbarMenu from "@/components/NavbarMenu/NavbarMenu";
 import SidebarMenu from "@/components/SidebarMenu/SidebarMenu";
 
 function DashboardLayout({ children }) {
-  // const { setLogin } = useLoginContext();
+  const { login, setLogin } = useLoginContext();
 
   // const setLoginContext = useCallback(() => {
   //   if (hasCookie("auth")) {
@@ -19,9 +19,10 @@ function DashboardLayout({ children }) {
   //   }
   // });
 
-  // useEffect(() => {
-  //   setLoginContext();
-  // }, []);
+  useEffect(() => {
+    // setLoginContext();
+    console.log(login);
+  }, []);
 
   return (
     <>

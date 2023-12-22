@@ -24,7 +24,7 @@ const getUser = async (userName, password) => {
   data.auth = await response.json();
 
   if (response.status === 200) {
-    await setAuthCookies(data.auth);
+    setAuthCookies(data.auth);
   }
 
   return data;

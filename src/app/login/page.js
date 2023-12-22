@@ -1,9 +1,9 @@
 "use client";
 
-import { getUser } from "@/services/auth/auth";
 import { Card, CardBody, Input, Button, CardHeader } from "@nextui-org/react";
 import { Suspense, useState } from "react";
 import { useRouter } from "next/navigation";
+import { useLoginContext } from "@/contexts/login-context";
 
 export default function Login() {
   const size = "sm";
@@ -12,16 +12,26 @@ export default function Login() {
   const [password, setPassword] = useState("0lelplR");
   const [isError, setIsError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("Shomething Wrong...!");
+  const { setLogin } = useLoginContext();
 
   const handleSubmit = async () => {
-    const { status, auth } = await getUser(userName, password);
+    const response = await fetch("/api/login", {
+      method: "POST",
+      body: JSON.stringify({
+        userName: userName,
+        password: password,
+      }),
+    });
+    console.log(response.headers);
+    const data = await response.json();
 
-    if (status === 200) {
+    if (response.ok) {
       setIsError(false);
+      setLogin(data);
       router.push("/dashboard");
     } else {
       setIsError(true);
-      setErrorMessage(auth.message);
+      setErrorMessage(data.message);
     }
   };
 

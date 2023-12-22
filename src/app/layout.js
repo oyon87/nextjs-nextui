@@ -19,9 +19,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body>
         <LoginContextProvider>
-          <NextProviders>
-            {children}
-          </NextProviders>
+          <NextProviders>{children}</NextProviders>
         </LoginContextProvider>
       </body>
     </html>
