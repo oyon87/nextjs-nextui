@@ -12,7 +12,6 @@ export default function Login() {
   const [password, setPassword] = useState("0lelplR");
   const [isError, setIsError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("Shomething Wrong...!");
-  const { setLogin } = useLoginContext();
 
   const handleSubmit = async () => {
     const response = await fetch("/api/login", {
@@ -27,7 +26,6 @@ export default function Login() {
 
     if (response.ok) {
       setIsError(false);
-      setLogin(data);
       router.push("/dashboard");
     } else {
       setIsError(true);

@@ -21,7 +21,6 @@ export async function middleware(request) {
     });
 
     response.headers.set("authorization", `Bearer ${dataAuth.token}`);
-    response.headers.set("test-header", "Hellow");
 
     return response;
   }
