@@ -1,13 +1,13 @@
 const listMenu = [
-  {
-    name: "HOME",
-    path: "/",
-    icon: "home",
-  },
+  // {
+  //   name: "HOME",
+  //   path: "/",
+  //   icon: "home",
+  // },
   {
     name: "Dashboard",
     path: "/dashboard",
-    icon: "list",
+    icon: "home",
   },
   {
     name: "Products",

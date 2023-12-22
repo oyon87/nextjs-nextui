@@ -8,7 +8,7 @@ import TableDefault from "@/components/TableDefault/TableDefault";
 import TableSkeleton from "@/components/TableSkeleton/TableSkeleton";
 
 function ProductListing() {
-  const tableHeaders = ["TITLE", "PRICE", "BRAND", "CATEGORY"];
+  const tableHeaders = ["TITLE", "BRAND", "CATEGORY", "PRICE", "STOCK"];
 
   const [page, setPage] = React.useState(1);
   const [pages, setPages] = React.useState(1);

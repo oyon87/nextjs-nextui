@@ -1,13 +1,12 @@
-"use server";
+"use client";
 
-// import { getBarerAuthorization } from "@/lib/cookies-auth";
-import { getTokenAuthorization } from "@/lib/header";
+import { getBarerAuthorization } from "@/utility/cookies-next";
 
 const PRODUCT_URL = process.env.NEXT_PUBLIC_API_URL + process.env.NEXT_PUBLIC_PRODUCTS_PATH;
 
 const getProducts = async (limit, skip) => {
   const header = {
-    Authorization: getTokenAuthorization(),
+    Authorization: getBarerAuthorization(),
     "Content-Type": "application/json",
   };
 
@@ -16,7 +15,7 @@ const getProducts = async (limit, skip) => {
     status: "",
   };
 
-  const response = await fetch(`${PRODUCT_URL}?limit=${limit}&skip=${skip}&select=title,price,brand,category`, {
+  const response = await fetch(`${PRODUCT_URL}?limit=${limit}&skip=${skip}`, {
     headers: header,
   }).then((res) => res);
 

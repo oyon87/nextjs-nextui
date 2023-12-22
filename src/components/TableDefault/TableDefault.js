@@ -28,9 +28,10 @@ function TableDefault({ ariaLabel = "Default Table", tableHeaders, tableRows, pa
           return (
             <TableRow key={item.id}>
               <TableCell>{item.title}</TableCell>
-              <TableCell>{item.price}</TableCell>
               <TableCell>{item.brand}</TableCell>
               <TableCell>{item.category}</TableCell>
+              <TableCell>{item.price}</TableCell>
+              <TableCell>{item.stock}</TableCell>
             </TableRow>
           );
         })}
