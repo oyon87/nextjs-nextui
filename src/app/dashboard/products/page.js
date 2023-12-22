@@ -33,19 +33,18 @@ function ProductListing() {
 
   return (
     <>
-      {
-        products.length ? (
-          <TableDefault
-            ariaLabel="Products Table"
-            tableHeaders={tableHeaders}
-            tableRows={products}
-            page={page}
-            pages={pages}
-            onChange={(page) => setPage(page)}
-          />
-        ) :
-          <TableSkeleton tableHeaders={tableHeaders} />
-      }
+      {products.length ? (
+        <TableDefault
+          ariaLabel="Products Table"
+          tableHeaders={tableHeaders}
+          tableRows={products}
+          page={page}
+          pages={pages}
+          onChange={(page) => setPage(page)}
+        />
+      ) : (
+        <TableSkeleton tableHeaders={tableHeaders} />
+      )}
     </>
   );
 }

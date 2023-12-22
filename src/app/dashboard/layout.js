@@ -2,7 +2,7 @@
 
 import { hasCookie } from "cookies-next";
 import { useEffect, useCallback } from "react";
-// import { getAuthCookies } from "@/lib/cookies-auth";
+import { getAuthCookies } from "@/utility/cookies-next";
 import { useLoginContext } from "@/contexts/login-context";
 
 // Components
@@ -10,18 +10,17 @@ import NavbarMenu from "@/components/NavbarMenu/NavbarMenu";
 import SidebarMenu from "@/components/SidebarMenu/SidebarMenu";
 
 function DashboardLayout({ children }) {
-  const { login, setLogin } = useLoginContext();
+  const { setLogin } = useLoginContext();
 
-  // const setLoginContext = useCallback(() => {
-  //   if (hasCookie("auth")) {
-  //     const dataAuth = getAuthCookies();
-  //     setLogin(dataAuth);
-  //   }
-  // });
+  const setLoginContext = useCallback(() => {
+    if (hasCookie("auth")) {
+      const dataAuth = getAuthCookies();
+      setLogin(dataAuth);
+    }
+  });
 
   useEffect(() => {
-    // setLoginContext();
-    console.log(login);
+    setLoginContext();
   }, []);
 
   return (

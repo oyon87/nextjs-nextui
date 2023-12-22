@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { cookies } from "next/headers";
+import { setAuthCookies } from "@/lib/cookies-auth";
 
 export async function POST(request) {
   const AUTH_URL = process.env.NEXT_PUBLIC_API_URL + process.env.NEXT_PUBLIC_LOGIN_PATH;
@@ -11,14 +11,14 @@ export async function POST(request) {
     body: JSON.stringify({
       username: userName,
       password: password,
-      // expiresInMins: 60, // optional
+      expiresInMins: 60,
     }),
   }).then((res) => res);
 
   const auth = await data.json();
 
   if (data.ok) {
-    cookies().set("auth", JSON.stringify(auth));
+    setAuthCookies(auth);
   }
 
   return NextResponse.json(auth, { status: data.status });

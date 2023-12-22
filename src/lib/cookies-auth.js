@@ -1,31 +1,11 @@
 "use server";
 
 import { cookies } from "next/headers";
-// import { getCookie, setCookie } from "cookies-next";
 
-const setAuthCookies = (auth) => {
-  cookies().set("auth", JSON.stringify(auth), { httpOnly: true });
+const setAuthCookies = async (auth) => {
+  cookies().set("auth", JSON.stringify(auth), { maxAge: 60 * 60 });
 
   return true;
 };
-
-// const setAuthCookies = (auth) => {
-//   setCookie("auth", JSON.stringify(auth), { secure: true, sameSite: "lax" });
-
-//   return true;
-// };
-
-// const getAuthCookies = () => {
-//   const auth = getCookie("auth");
-//   const dataAuth = JSON.parse(auth);
-
-//   return dataAuth;
-// };
-
-// const getBarerAuthorization = () => {
-//   const dataAuth = getAuthCookies();
-
-//   return dataAuth.token;
-// };
 
 export { setAuthCookies };
