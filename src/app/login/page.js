@@ -21,7 +21,7 @@ export default function Login() {
         password: password,
       }),
     });
-    console.log(response.headers);
+
     const data = await response.json();
 
     if (response.ok) {

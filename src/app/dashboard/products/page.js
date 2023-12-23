@@ -5,24 +5,25 @@ import { getProducts } from "@/services/product/product";
 import { ROW_PER_PAGE } from "@/constant/pagination";
 import { startPage, totalPages } from "@/utility/pagination";
 import ProductTable from "@/ui/products/ProductsTable";
+import ModalAlert from "@/components/ModalAlert/ModalAlert";
 
 function ProductListing() {
   const tableHeaders = ["TITLE", "BRAND", "CATEGORY", "PRICE", "STOCK"];
 
   const [page, setPage] = React.useState(1);
-  const [pages, setPages] = React.useState(1);
-  const [products, setProducts] = React.useState([]);
+  const [totalPage, setTotalPage] = React.useState(0);
+  const [dataProducts, setDataProducts] = React.useState({});
+  const [errorMessage, setErrorMessage] = React.useState("");
 
   const fetchData = async () => {
     const start = startPage(page);
     const { status, products } = await getProducts(ROW_PER_PAGE, start);
 
     if (status === 200) {
-      setProducts(products.products);
-      const totalPage = totalPages(products.total);
-      setPages(totalPage);
+      setDataProducts(products);
+      setTotalPage(totalPages(products.total));
     } else {
-      alert(products.message);
+      setErrorMessage(products.message);
     }
   };
 
@@ -35,11 +36,12 @@ function ProductListing() {
       <ProductTable
         ariaLabel="Products Table"
         tableHeaders={tableHeaders}
-        tableRows={products}
+        products={dataProducts}
         page={page}
-        pages={pages}
+        totalPage={totalPage}
         onChange={(page) => setPage(page)}
       />
+      <ModalAlert text={errorMessage} isLogin={true} />
     </>
   );
 }
