@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import { useState, useEffect } from "react";
 import { getProducts } from "@/services/product/product";
 import { ROW_PER_PAGE } from "@/constant/pagination";
 import { startPage, totalPages } from "@/utility/pagination";
@@ -10,14 +10,15 @@ import ModalAlert from "@/components/ModalAlert/ModalAlert";
 function ProductListing() {
   const tableHeaders = ["TITLE", "BRAND", "CATEGORY", "PRICE", "STOCK"];
 
-  const [page, setPage] = React.useState(1);
-  const [totalPage, setTotalPage] = React.useState(0);
-  const [dataProducts, setDataProducts] = React.useState({});
-  const [errorMessage, setErrorMessage] = React.useState("");
+  const [page, setPage] = useState(0);
+  const [totalPage, setTotalPage] = useState(0);
+  const [dataProducts, setDataProducts] = useState({});
+  const [errorMessage, setErrorMessage] = useState("");
+  const [search, setSearchValue] = useState("");
 
   const fetchData = async () => {
     const start = startPage(page);
-    const { status, products } = await getProducts(ROW_PER_PAGE, start);
+    const { status, products } = await getProducts(ROW_PER_PAGE, start, search);
 
     if (status === 200) {
       setDataProducts(products);
@@ -27,12 +28,19 @@ function ProductListing() {
     }
   };
 
-  React.useEffect(() => {
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      startPage(0);
+      fetchData();
+    }
+  };
+
+  useEffect(() => {
     fetchData();
   }, [page]);
 
   return (
-    <>
+    <div className="w-full">
       <ProductTable
         ariaLabel="Products Table"
         tableHeaders={tableHeaders}
@@ -40,9 +48,12 @@ function ProductListing() {
         page={page}
         totalPage={totalPage}
         onChange={(page) => setPage(page)}
+        search={search}
+        setSearchValue={setSearchValue}
+        handleKeyDown={handleKeyDown}
       />
       <ModalAlert text={errorMessage} isLogin={true} />
-    </>
+    </div>
   );
 }
 

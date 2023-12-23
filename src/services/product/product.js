@@ -4,7 +4,7 @@ import { getBarerAuthorization } from "@/utility/cookies-next";
 
 const PRODUCT_URL = process.env.NEXT_PUBLIC_API_URL + process.env.NEXT_PUBLIC_PRODUCTS_PATH;
 
-const getProducts = async (limit, skip) => {
+const getProducts = async (limit, skip, search) => {
   const header = {
     Authorization: getBarerAuthorization(),
     "Content-Type": "application/json",
@@ -15,7 +15,7 @@ const getProducts = async (limit, skip) => {
     status: "",
   };
 
-  const response = await fetch(`${PRODUCT_URL}?limit=${limit}&skip=${skip}`, {
+  const response = await fetch(`${PRODUCT_URL}/search?q=${search}&limit=${limit}&skip=${skip}`, {
     headers: header,
   }).then((res) => res);
 

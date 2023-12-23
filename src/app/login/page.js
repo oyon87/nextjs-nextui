@@ -30,6 +30,7 @@ export default function Login() {
       router.push("/dashboard");
     } else {
       setIsError(true);
+      setIsLoading(false);
       setErrorMessage(data.message);
     }
   };
@@ -58,7 +59,7 @@ export default function Login() {
             placeholder="Enter your password"
             size={size}
           />
-          <Button type="submit" color="primary" className="mt-2" size={size} isLoading={isLoading ? true : false}>
+          <Button type="submit" color="primary" className="mt-2" size={size} isLoading={isLoading}>
             Sign in
           </Button>
         </CardBody>

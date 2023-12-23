@@ -7,11 +7,25 @@ import {
   TableCell,
   Pagination,
   Spinner,
+  Input,
 } from "@nextui-org/react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { useEffect, useState } from "react";
 
-function ProductTable({ ariaLabel = "Default Table", tableHeaders, products, page, totalPage, onChange }) {
+function ProductTable({
+  ariaLabel = "Default Table",
+  tableHeaders,
+  products,
+  page,
+  totalPage,
+  onChange,
+  search,
+  setSearchValue,
+  handleKeyDown,
+}) {
   const [data, setData] = useState({});
+  const size = "sm";
 
   useEffect(() => {
     setData(products);
@@ -19,6 +33,18 @@ function ProductTable({ ariaLabel = "Default Table", tableHeaders, products, pag
 
   return (
     <>
+      <div className="mb-3" style={{ maxWidth: "300px" }}>
+        <Input
+          value={search}
+          type="text"
+          // label="Search"
+          placeholder="Type to search..."
+          size={size}
+          startContent={<FontAwesomeIcon icon={faMagnifyingGlass} />}
+          onChange={(e) => setSearchValue(e.target.value)}
+          onKeyDown={handleKeyDown}
+        />
+      </div>
       <Table
         aria-label={ariaLabel}
         bottomContent={
