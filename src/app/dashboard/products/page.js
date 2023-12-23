@@ -4,8 +4,7 @@ import React from "react";
 import { getProducts } from "@/services/product/product";
 import { ROW_PER_PAGE } from "@/constant/pagination";
 import { startPage, totalPages } from "@/utility/pagination";
-import TableDefault from "@/components/TableDefault/TableDefault";
-import TableSkeleton from "@/components/TableSkeleton/TableSkeleton";
+import ProductTable from "@/ui/products/ProductsTable";
 
 function ProductListing() {
   const tableHeaders = ["TITLE", "BRAND", "CATEGORY", "PRICE", "STOCK"];
@@ -33,18 +32,14 @@ function ProductListing() {
 
   return (
     <>
-      {products.length ? (
-        <TableDefault
-          ariaLabel="Products Table"
-          tableHeaders={tableHeaders}
-          tableRows={products}
-          page={page}
-          pages={pages}
-          onChange={(page) => setPage(page)}
-        />
-      ) : (
-        <TableSkeleton tableHeaders={tableHeaders} />
-      )}
+      <ProductTable
+        ariaLabel="Products Table"
+        tableHeaders={tableHeaders}
+        tableRows={products}
+        page={page}
+        pages={pages}
+        onChange={(page) => setPage(page)}
+      />
     </>
   );
 }

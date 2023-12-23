@@ -1,6 +1,15 @@
-import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, Pagination } from "@nextui-org/react";
+import {
+  Table,
+  TableHeader,
+  TableColumn,
+  TableBody,
+  TableRow,
+  TableCell,
+  Pagination,
+  Spinner,
+} from "@nextui-org/react";
 
-function TableDefault({ ariaLabel = "Default Table", tableHeaders, tableRows, page, pages, onChange }) {
+function ProductTable({ ariaLabel = "Default Table", tableHeaders, tableRows, page, pages, onChange }) {
   return (
     <Table
       aria-label={ariaLabel}
@@ -23,7 +32,7 @@ function TableDefault({ ariaLabel = "Default Table", tableHeaders, tableRows, pa
           <TableColumn key={index}>{item}</TableColumn>
         ))}
       </TableHeader>
-      <TableBody>
+      <TableBody emptyContent={<Spinner label="Loading..." />}>
         {tableRows.map((item) => {
           return (
             <TableRow key={item.id}>
@@ -40,4 +49,4 @@ function TableDefault({ ariaLabel = "Default Table", tableHeaders, tableRows, pa
   );
 }
 
-export default TableDefault;
+export default ProductTable;
