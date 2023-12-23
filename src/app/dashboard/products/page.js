@@ -10,7 +10,7 @@ import ModalAlert from "@/components/ModalAlert/ModalAlert";
 function ProductListing() {
   const tableHeaders = ["TITLE", "BRAND", "CATEGORY", "PRICE", "STOCK"];
 
-  const [page, setPage] = useState(0);
+  const [page, setPage] = useState(1);
   const [totalPage, setTotalPage] = useState(0);
   const [dataProducts, setDataProducts] = useState({});
   const [errorMessage, setErrorMessage] = useState("");
@@ -30,7 +30,7 @@ function ProductListing() {
 
   const handleKeyDown = (e) => {
     if (e.key === "Enter") {
-      startPage(0);
+      setPage(1);
       fetchData();
     }
   };

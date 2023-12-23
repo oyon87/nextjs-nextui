@@ -81,7 +81,7 @@ function ProductTable({
         </TableBody>
       </Table>
       <div className="mt-3">
-        <span className="text-default-400 text-small">Total {data.total} products</span>
+        <span className="text-default-400 text-small">Total {data.total ? data.total : 0} products</span>
       </div>
     </>
   );
