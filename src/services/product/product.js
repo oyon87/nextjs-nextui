@@ -1,22 +1,17 @@
 "use client";
 
-import { getBarerAuthorization } from "@/utility/cookies-next";
+import { getHeader } from "@/lib/header";
 
 const PRODUCT_URL = process.env.NEXT_PUBLIC_API_URL + process.env.NEXT_PUBLIC_PRODUCTS_PATH;
 
 const getProducts = async (limit, skip, search) => {
-  const header = {
-    Authorization: getBarerAuthorization(),
-    "Content-Type": "application/json",
-  };
-
   const data = {
     products: "",
     status: "",
   };
 
   const response = await fetch(`${PRODUCT_URL}/search?q=${search}&limit=${limit}&skip=${skip}`, {
-    headers: header,
+    headers: getHeader(),
   }).then((res) => res);
 
   data.status = response.status;
@@ -25,4 +20,12 @@ const getProducts = async (limit, skip, search) => {
   return data;
 };
 
-export { getProducts };
+const getDetailProduct = async (id) => {
+  const response = await fetch(`${PRODUCT_URL}/${id}`, {
+    headers: getHeader(),
+  });
+
+  return response;
+};
+
+export { getProducts, getDetailProduct };

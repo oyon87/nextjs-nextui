@@ -8,9 +8,11 @@ import {
   Pagination,
   Spinner,
   Input,
+  Tooltip,
+  Link,
 } from "@nextui-org/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import { faEdit, faEye, faMagnifyingGlass, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import { useEffect, useState } from "react";
 
 function ProductTable({
@@ -33,7 +35,7 @@ function ProductTable({
 
   return (
     <>
-      <div className="mb-3" style={{ maxWidth: "300px" }}>
+      <div className="mb-3" style={{ maxWidth: "350px" }}>
         <Input
           value={search}
           type="text"
@@ -65,6 +67,7 @@ function ProductTable({
           {tableHeaders.map((item, index) => (
             <TableColumn key={index}>{item}</TableColumn>
           ))}
+          <TableColumn key="Action">ACTION</TableColumn>
         </TableHeader>
         <TableBody emptyContent={<Spinner label="Loading..." />}>
           {data.products?.map((item) => {
@@ -75,6 +78,28 @@ function ProductTable({
                 <TableCell>{item.category}</TableCell>
                 <TableCell>{item.price}</TableCell>
                 <TableCell>{item.stock}</TableCell>
+                <TableCell>
+                  <div className="relative flex items-center gap-3">
+                    <Tooltip content="Details Product">
+                      <Link
+                        href={`/dashboard/products/detail/${item.id}`}
+                        className="text-lg text-default-400 cursor-pointer active:opacity-50"
+                      >
+                        <FontAwesomeIcon icon={faEye} />
+                      </Link>
+                    </Tooltip>
+                    {/* <Tooltip content="Edit Product">
+                      <span className="text-lg text-default-400 cursor-pointer active:opacity-50">
+                        <FontAwesomeIcon icon={faEdit} />
+                      </span>
+                    </Tooltip>
+                    <Tooltip color="danger" content="Delete Product">
+                      <span className="text-lg text-danger cursor-pointer active:opacity-50">
+                        <FontAwesomeIcon icon={faTrashAlt} />
+                      </span>
+                    </Tooltip> */}
+                  </div>
+                </TableCell>
               </TableRow>
             );
           })}

@@ -1,10 +1,12 @@
-import { headers } from "next/headers";
+import { getBarerAuthorization } from "@/utility/cookies-next";
 
-function getTokenAuthorization() {
-  const headersList = headers();
-  const authorization = headersList.get("authorization");
+const getHeader = () => {
+  const header = {
+    Authorization: getBarerAuthorization(),
+    "Content-Type": "application/json",
+  };
 
-  return authorization;
-}
+  return header;
+};
 
-export { getTokenAuthorization };
+export { getHeader };
