@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { getProducts } from "@/services/product/product";
 import { ROW_PER_PAGE } from "@/constant/pagination";
 import { startPage, totalPages } from "@/utility/pagination";
-import ProductTable from "@/ui/products/ProductsTable";
+import ProductTable from "@/app/dashboard/products/ui/ProductsTable";
 import ModalAlert from "@/components/ModalAlert/ModalAlert";
 
 function ProductListing() {

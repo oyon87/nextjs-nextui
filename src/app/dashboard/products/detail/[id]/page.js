@@ -28,7 +28,7 @@ function DetaisProductPage({ params }) {
     <>
       {product.title ? (
         <div className="reative grid grid-cols-6 gap-5">
-          <div className="bg-slate-200 h-96 col-span-2">
+          <div className="bg-slate-200 h-80 col-span-2">
             <img
               className="object-contain h-full w-full"
               src={product.thumbnail}

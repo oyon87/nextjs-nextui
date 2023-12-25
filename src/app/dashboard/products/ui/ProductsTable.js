@@ -35,7 +35,7 @@ function ProductTable({
 
   return (
     <>
-      <div className="mb-3" style={{ maxWidth: "350px" }}>
+      <div className="mb-3 w-80">
         <Input
           value={search}
           type="text"
@@ -51,15 +51,19 @@ function ProductTable({
         aria-label={ariaLabel}
         bottomContent={
           <div className="flex w-full justify-center">
-            <Pagination
-              isCompact
-              showControls
-              showShadow
-              color="secondary"
-              page={page}
-              total={totalPage}
-              onChange={onChange}
-            />
+            {totalPage ? (
+              <Pagination
+                isCompact
+                showControls
+                showShadow
+                color="secondary"
+                page={page}
+                total={totalPage}
+                onChange={onChange}
+              />
+            ) : (
+              ""
+            )}
           </div>
         }
       >
