@@ -9,16 +9,16 @@ function ImagesGallery({ images }) {
   return (
     <>
       <div className="bg-slate-200 h-80 mb-3 flex justify-center items-center">
-        <img src={images[0]} alt="Thumbnail Image" className="object-contain" ref={thumbnailRef} />
+        <img src={images[0]} alt="Thumbnail Image" className="object-contain w-full h-full" ref={thumbnailRef} />
       </div>
-      <div className="grid grid-cols-4 gap-3 bg-slate-200">
+      <div className="grid grid-cols-4 gap-3">
         {images?.map((image, index) => {
           return (
             <img
               src={image}
               alt={`Image-${index}`}
               key={index}
-              className="border object-contain cursor-pointer"
+              className="border object-contain cursor-pointer h-16"
               onClick={() => handleImageClick(image)}
             />
           );
