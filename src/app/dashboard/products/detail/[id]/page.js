@@ -4,6 +4,7 @@ import ModalAlert from "@/components/ModalAlert/ModalAlert";
 import ProductDetailSkeleton from "./ui/ProductDetailSkeleton";
 import { getDetailProduct } from "@/services/product/product";
 import { useEffect, useState } from "react";
+import ImagesGallery from "@/components/ImagesGallery/ImagesGallery";
 
 function DetaisProductPage({ params }) {
   const [product, setProduct] = useState({});
@@ -28,13 +29,8 @@ function DetaisProductPage({ params }) {
     <>
       {product.title ? (
         <div className="reative grid grid-cols-6 gap-5">
-          <div className="bg-slate-200 h-80 col-span-2">
-            <img
-              className="object-contain h-full w-full"
-              src={product.thumbnail}
-              alt={product.title}
-              aria-label={product.title}
-            />
+          <div className="col-span-2">
+            <ImagesGallery images={product.images} />
           </div>
           <div className="col-span-4">
             <h1 className="text-2xl font-bold">{product.title}</h1>
