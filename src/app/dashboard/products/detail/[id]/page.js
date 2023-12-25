@@ -5,6 +5,7 @@ import ProductDetailSkeleton from "./ui/ProductDetailSkeleton";
 import { getDetailProduct } from "@/services/product/product";
 import { useEffect, useState } from "react";
 import ImagesGallery from "@/components/ImagesGallery/ImagesGallery";
+import Rating from "@/components/Rating/Rating";
 
 function DetaisProductPage({ params }) {
   const [product, setProduct] = useState({});
@@ -38,8 +39,8 @@ function DetaisProductPage({ params }) {
             <p>Brand: {product.brand}</p>
             <p>Category: {product.category}</p>
             <p>Stock: {product.stock}</p>
-            <p>Rating: {product.rating}</p>
-            <div className="mt-3">
+            <Rating rating={product.rating} />
+            <div>
               Description:
               <p>{product.description}</p>
             </div>
