@@ -23,10 +23,8 @@ function ProductListing() {
       const products = await getProducts(ROW_PER_PAGE, start, search);
       setDataProducts(products);
       setTotalPage(totalPages(products.total));
-    } catch (errRes) {
-      errRes.json().then((error) => {
-        setErrorMessage(error.message);
-      });
+    } catch (error) {
+      setErrorMessage(error);
     }
   };
 

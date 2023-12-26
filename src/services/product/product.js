@@ -7,14 +7,12 @@ const PRODUCT_URL = process.env.NEXT_PUBLIC_API_URL + process.env.NEXT_PUBLIC_PR
 const getProducts = async (limit, skip, search) => {
   const response = await fetch(`${PRODUCT_URL}/search?q=${search}&limit=${limit}&skip=${skip}`, {
     headers: getHeader(),
-  })
-    .then((res) => {
-      if (!res.ok) {
-        throw res;
-      }
-      return res.json();
-    })
-    .then((response) => response);
+  }).then(async (res) => {
+    if (!res.ok) {
+      throw await res.json().then((error) => error.message);
+    }
+    return await res.json().then((response) => response);
+  });
 
   return response;
 };
