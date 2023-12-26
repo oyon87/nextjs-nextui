@@ -1,13 +1,17 @@
 "use client";
 
-import ModalAlert from "@/components/ModalAlert/ModalAlert";
-import ProductDetailSkeleton from "./ui/ProductDetailSkeleton";
-import { getDetailProduct } from "@/services/product/product";
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+import { getDetailProduct } from "@/services/product/product";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
+import ModalAlert from "@/components/ModalAlert/ModalAlert";
 import ImagesGallery from "@/components/ImagesGallery/ImagesGallery";
+import ProductDetailSkeleton from "./ui/ProductDetailSkeleton";
 import Rating from "@/components/Rating/Rating";
 
 function DetaisProductPage({ params }) {
+  const router = useRouter();
   const [product, setProduct] = useState({});
   const [errorMessage, setErrorMessage] = useState("");
 
@@ -29,7 +33,10 @@ function DetaisProductPage({ params }) {
   return (
     <>
       {product.title ? (
-        <div className="reative grid grid-cols-6 gap-5">
+        <div className="relative grid grid-cols-1 md:grid-cols-6 gap-y-5 md:gap-5 mb-10">
+          <a href="#" onClick={() => router.back()} className="absolute -top-9 right-0 md:top-0 md:right-4 ">
+            <FontAwesomeIcon icon={faArrowLeft} />
+          </a>
           <div className="col-span-2">
             <ImagesGallery images={product.images} />
           </div>
@@ -40,7 +47,7 @@ function DetaisProductPage({ params }) {
             <p>Category: {product.category}</p>
             <p>Stock: {product.stock}</p>
             <Rating rating={product.rating} />
-            <div>
+            <div className="w-3/5">
               Description:
               <p>{product.description}</p>
             </div>

@@ -13,7 +13,7 @@ function LoginContextProvider({ children }) {
 export function useLoginContext() {
   const context = useContext(LoginContext);
   if (!context) {
-    throw new Error("useLoginContent must be used within a LoginContentProvider");
+    throw new Error("useLoginContent must be used within a LoginContextProvider");
   }
 
   return context;
