@@ -3,6 +3,7 @@
 import { Card, CardBody, Input, Button, CardHeader } from "@nextui-org/react";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { authLogin } from "@/services/auth/auth";
 
 export default function Login() {
   const size = "sm";
@@ -14,49 +15,18 @@ export default function Login() {
   const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = async () => {
-    // const response = await fetch("/api/login", {
-    //   method: "POST",
-    //   body: JSON.stringify({
-    //     userName: userName,
-    //     password: password,
-    //   }),
-    // });
-
-    // const data = await response.json();
-
-    // if (response.ok) {
-    //   setIsError(false);
-    //   setIsLoading(true);
-    //   router.push("/dashboard");
-    // } else {
-    //   setIsError(true);
-    //   setIsLoading(false);
-    //   setErrorMessage(data.message);
-    // }
-
-    await fetch("/api/login", {
-      method: "POST",
-      body: JSON.stringify({
-        userName: userName,
-        password: password,
-      }),
-    })
-      .then((res) => {
-        if (!res.ok) {
-          return Promise.reject(res);
-        }
-
-        setIsError(false);
-        setIsLoading(true);
-        router.push("/dashboard");
-      })
-      .catch((err) => {
-        err.json().then((jsonError) => {
-          setIsError(true);
-          setIsLoading(false);
-          setErrorMessage(jsonError.message);
-        });
-      });
+    try {
+      await authLogin(userName, password);
+      setIsError(false);
+      setIsLoading(true);
+      return true;
+    } catch (error) {
+      setIsError(true);
+      setIsLoading(false);
+      setErrorMessage(error);
+    } finally {
+      router.push("/dashboard");
+    }
   };
 
   return (
@@ -74,6 +44,7 @@ export default function Login() {
             label="User Name"
             placeholder="Enter your user name"
             size={size}
+            isRequired
           />
           <Input
             value={password}
@@ -82,6 +53,7 @@ export default function Login() {
             label="Password"
             placeholder="Enter your password"
             size={size}
+            isRequired
           />
           <Button type="submit" color="primary" className="mt-2" size={size} isLoading={isLoading}>
             Sign in
