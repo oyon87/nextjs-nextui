@@ -18,13 +18,15 @@ function ProductListing() {
 
   const fetchData = async () => {
     const start = startPage(page);
-    const { status, products } = await getProducts(ROW_PER_PAGE, start, search);
 
-    if (status === 200) {
+    try {
+      const products = await getProducts(ROW_PER_PAGE, start, search);
       setDataProducts(products);
       setTotalPage(totalPages(products.total));
-    } else {
-      setErrorMessage(products.message);
+    } catch (errRes) {
+      errRes.json().then((error) => {
+        setErrorMessage(error.message);
+      });
     }
   };
 
