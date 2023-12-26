@@ -14,25 +14,49 @@ export default function Login() {
   const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = async () => {
-    const response = await fetch("/api/login", {
+    // const response = await fetch("/api/login", {
+    //   method: "POST",
+    //   body: JSON.stringify({
+    //     userName: userName,
+    //     password: password,
+    //   }),
+    // });
+
+    // const data = await response.json();
+
+    // if (response.ok) {
+    //   setIsError(false);
+    //   setIsLoading(true);
+    //   router.push("/dashboard");
+    // } else {
+    //   setIsError(true);
+    //   setIsLoading(false);
+    //   setErrorMessage(data.message);
+    // }
+
+    await fetch("/api/login", {
       method: "POST",
       body: JSON.stringify({
         userName: userName,
         password: password,
       }),
-    });
+    })
+      .then((res) => {
+        if (!res.ok) {
+          return Promise.reject(res);
+        }
 
-    const data = await response.json();
-
-    if (response.ok) {
-      setIsError(false);
-      setIsLoading(true);
-      router.push("/dashboard");
-    } else {
-      setIsError(true);
-      setIsLoading(false);
-      setErrorMessage(data.message);
-    }
+        setIsError(false);
+        setIsLoading(true);
+        router.push("/dashboard");
+      })
+      .catch((err) => {
+        err.json().then((jsonError) => {
+          setIsError(true);
+          setIsLoading(false);
+          setErrorMessage(jsonError.message);
+        });
+      });
   };
 
   return (
