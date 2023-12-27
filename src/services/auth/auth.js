@@ -1,5 +1,7 @@
 "use client";
 
+import { removeAuthCookies } from "@/lib/cookies-auth";
+
 const authLogin = async (userName, password) => {
   const response = await fetch("/api/login", {
     method: "POST",
@@ -17,4 +19,8 @@ const authLogin = async (userName, password) => {
   return response;
 };
 
-export { authLogin };
+const logout = () => {
+  removeAuthCookies();
+};
+
+export { authLogin, logout };
