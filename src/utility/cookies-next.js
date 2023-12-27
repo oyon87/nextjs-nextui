@@ -1,4 +1,4 @@
-import { getCookie } from "cookies-next";
+import { getCookie, deleteCookie } from "cookies-next";
 
 const getAuthCookies = () => {
   const auth = getCookie("auth");
@@ -13,4 +13,9 @@ const getBarerAuthorization = () => {
   return dataAuth.token;
 };
 
-export { getAuthCookies, getBarerAuthorization };
+const removeAuthCookies = () => {
+  deleteCookie("auth");
+  return true;
+};
+
+export { getAuthCookies, getBarerAuthorization, removeAuthCookies };

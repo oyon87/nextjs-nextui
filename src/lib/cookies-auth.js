@@ -7,9 +7,9 @@ const setAuthCookies = async (auth) => {
   return true;
 };
 
-const removeAuthCookies = () => {
-  cookies().delete("auth");
-  return true;
-};
+// const removeAuthCookies = () => {
+//   cookies().delete("auth");
+//   return true;
+// };
 
-export { setAuthCookies, removeAuthCookies };
+export { setAuthCookies };
