@@ -20,6 +20,11 @@ const getProducts = async (limit, skip, search) => {
 const getDetailProduct = async (id) => {
   const response = await fetch(`${PRODUCT_URL}/${id}`, {
     headers: getHeader(),
+  }).then(async (res) => {
+    if (!res.ok) {
+      throw await res.json().then((error) => error.message);
+    }
+    return await res.json().then((response) => response);
   });
 
   return response;

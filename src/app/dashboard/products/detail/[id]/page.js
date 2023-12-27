@@ -16,13 +16,11 @@ function DetaisProductPage({ params }) {
   const [errorMessage, setErrorMessage] = useState("");
 
   const getDetailProductData = async () => {
-    const response = await getDetailProduct(params.id);
-    const data = await response.json();
-
-    if (response.ok) {
-      setProduct(data);
-    } else {
-      setErrorMessage(data.message);
+    try {
+      const product = await getDetailProduct(params.id);
+      setProduct(product);
+    } catch (error) {
+      setErrorMessage(error);
     }
   };
 
