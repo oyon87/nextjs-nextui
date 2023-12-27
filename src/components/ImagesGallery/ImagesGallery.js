@@ -15,11 +15,10 @@ function ImagesGallery({ images }) {
       <div className="grid grid-cols-4 gap-3">
         {images?.map((image, index) => {
           return (
-            <div className="border cursor-pointer h-16 flex justify-center items-center bg-slate-200">
+            <div className="border cursor-pointer h-16 flex justify-center items-center bg-slate-200" key={index}>
               <img
                 src={image}
                 alt={`Image-${index}`}
-                key={index}
                 className="object-contain w-full h-full"
                 onClick={() => handleImageClick(image)}
               />

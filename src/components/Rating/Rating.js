@@ -7,11 +7,11 @@ function Rating({ rating }) {
     let stars = [];
     for (let i = 5; i > 0; i--) {
       if (rating >= 1) {
-        stars.push(<FontAwesomeIcon icon={faStar} />);
+        stars.push(<FontAwesomeIcon icon={faStar} key={i} />);
       } else if (rating > 0 && rating < 1) {
-        stars.push(<FontAwesomeIcon icon={faStarHalfStroke} />);
+        stars.push(<FontAwesomeIcon icon={faStarHalfStroke} key={i} />);
       } else if (rating <= 0) {
-        stars.push(<FontAwesomeIcon className="text-gray-200" icon={faStar} />);
+        stars.push(<FontAwesomeIcon className="text-gray-200" icon={faStar} key={i} />);
       }
 
       rating -= 1;
