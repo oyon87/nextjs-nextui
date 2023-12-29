@@ -15,17 +15,16 @@ export default function Login() {
   const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = async () => {
+    setIsLoading(true);
     try {
       await authLogin(userName, password);
       setIsError(false);
       setIsLoading(true);
-      return true;
+      router.push("/dashboard");
     } catch (error) {
       setIsError(true);
       setIsLoading(false);
       setErrorMessage(error);
-    } finally {
-      router.push("/dashboard");
     }
   };
 
