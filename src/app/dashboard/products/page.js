@@ -9,12 +9,15 @@ import ModalAlert from "@/components/ModalAlert/ModalAlert";
 
 function ProductListing() {
   const tableHeaders = ["TITLE", "BRAND", "CATEGORY", "PRICE", "STOCK"];
-
   const [page, setPage] = useState(1);
   const [totalPage, setTotalPage] = useState(0);
   const [dataProducts, setDataProducts] = useState({});
-  const [errorMessage, setErrorMessage] = useState("");
   const [search, setSearchValue] = useState("");
+  const [modal, setModal] = useState({
+    isOpen: false,
+    type: "",
+    data: "",
+  });
 
   const fetchData = async () => {
     const start = startPage(page);
@@ -24,7 +27,11 @@ function ProductListing() {
       setDataProducts(products);
       setTotalPage(totalPages(products.total));
     } catch (error) {
-      setErrorMessage(error);
+      setModal({
+        isOpen: true,
+        type: "login",
+        data: error,
+      });
     }
   };
 
@@ -33,6 +40,19 @@ function ProductListing() {
       setPage(1);
       fetchData();
     }
+  };
+
+  const handleModalDelete = (item) => {
+    setModal({
+      isOpen: true,
+      type: "delete",
+      data: item,
+      actions: handleDelete,
+    });
+  };
+
+  const handleDelete = (id) => {
+    console.log("DELETE", id);
   };
 
   useEffect(() => {
@@ -51,8 +71,9 @@ function ProductListing() {
         search={search}
         setSearchValue={setSearchValue}
         handleKeyDown={handleKeyDown}
+        handleModalDelete={handleModalDelete}
       />
-      <ModalAlert text={errorMessage} isLogin={true} />
+      <ModalAlert dataModal={modal} />
     </div>
   );
 }

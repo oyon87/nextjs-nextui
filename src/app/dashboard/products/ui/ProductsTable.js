@@ -25,6 +25,7 @@ function ProductTable({
   search,
   setSearchValue,
   handleKeyDown,
+  handleModalDelete,
 }) {
   const [data, setData] = useState({});
   const size = "sm";
@@ -96,12 +97,15 @@ function ProductTable({
                       <span className="text-lg text-default-400 cursor-pointer active:opacity-50">
                         <FontAwesomeIcon icon={faEdit} />
                       </span>
-                    </Tooltip>
+                    </Tooltip>*/}
                     <Tooltip color="danger" content="Delete Product">
-                      <span className="text-lg text-danger cursor-pointer active:opacity-50">
+                      <span
+                        className="text-lg text-danger cursor-pointer active:opacity-50"
+                        onClick={() => handleModalDelete(item)}
+                      >
                         <FontAwesomeIcon icon={faTrashAlt} />
                       </span>
-                    </Tooltip> */}
+                    </Tooltip>
                   </div>
                 </TableCell>
               </TableRow>

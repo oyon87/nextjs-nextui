@@ -13,14 +13,22 @@ import Rating from "@/components/Rating/Rating";
 function DetaisProductPage({ params }) {
   const router = useRouter();
   const [product, setProduct] = useState({});
-  const [errorMessage, setErrorMessage] = useState("");
+  const [modal, setModal] = useState({
+    isOpen: false,
+    type: "",
+    data: "",
+  });
 
   const getDetailProductData = async () => {
     try {
       const product = await getDetailProduct(params.id);
       setProduct(product);
     } catch (error) {
-      setErrorMessage(error);
+      setModal({
+        isOpen: true,
+        type: "login",
+        data: error,
+      });
     }
   };
 
@@ -54,7 +62,7 @@ function DetaisProductPage({ params }) {
       ) : (
         <ProductDetailSkeleton />
       )}
-      <ModalAlert text={errorMessage} isLogin={true} />
+      <ModalAlert dataModal={modal} />
     </>
   );
 }
