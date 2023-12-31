@@ -58,6 +58,14 @@ function ProductTable({
         >
           Add Product
         </Button>
+        <Link
+          href="#"
+          className="text-lg text-default-400 cursor-pointer active:opacity-50"
+          onClick={() => router.push("/dashboard/products/create/")}
+        >
+          <FontAwesomeIcon icon={faPlus} />
+          Add Product
+        </Link>
       </div>
       <Table
         aria-label={ariaLabel}
