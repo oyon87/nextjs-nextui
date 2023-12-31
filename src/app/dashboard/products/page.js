@@ -57,7 +57,7 @@ function ProductListing() {
         data: product,
       });
     } catch (error) {
-      setModal(setModal(getStateError(error)));
+      setModal(getStateError(error));
     }
   };
 

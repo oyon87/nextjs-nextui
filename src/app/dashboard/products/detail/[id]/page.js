@@ -27,7 +27,7 @@ function DetaisProductPage({ params }) {
       const product = await getDetailProduct(params.id);
       setProduct(product);
     } catch (error) {
-      setModal(setModal(getStateError(error)));
+      setModal(getStateError(error));
     }
   };
 

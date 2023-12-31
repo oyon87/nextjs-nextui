@@ -41,6 +41,12 @@ export default function ModalAlert({ dataModal }) {
           body: `The ${dataModal.data.title} has been deleted on ${dateFormat}`,
         };
         break;
+      case "insertSuccess":
+        updateDataModal.message = {
+          header: "CREATE PRODUCT COMPLETE",
+          body: `The ${dataModal.data.title} has been created`,
+        };
+        break;
       default:
         break;
     }
@@ -68,6 +74,18 @@ export default function ModalAlert({ dataModal }) {
             Yes
           </Button>
         );
+      case "insertSuccess":
+        return (
+          <Button
+            color="primary"
+            onPress={() => {
+              router.push("/dashboard/products");
+              onClose();
+            }}
+          >
+            Go to Product listing
+          </Button>
+        );
       default:
         break;
     }
@@ -79,6 +97,18 @@ export default function ModalAlert({ dataModal }) {
     } finally {
       router.push("/login");
     }
+  };
+
+  const hiddenCloseButton = (modal) => {
+    const defaultType = ["login", "insertSuccess"];
+    let result = true;
+    defaultType.map((type) => {
+      if (type === modal.type) {
+        result = true;
+      }
+    });
+
+    return result;
   };
 
   useEffect(() => {
@@ -95,7 +125,7 @@ export default function ModalAlert({ dataModal }) {
         onClose={onClose}
         size={size}
         isDismissable={false}
-        hideCloseButton={modal.type === "login" ? true : false}
+        hideCloseButton={hiddenCloseButton ? true : false}
       >
         <ModalContent>
           {(onClose) => (
@@ -106,9 +136,7 @@ export default function ModalAlert({ dataModal }) {
               </ModalBody>
               <ModalFooter className="mx-auto">
                 {additionalButton(modal.type, modal.actions, modal.id)}
-                {modal.type === "login" ? (
-                  ""
-                ) : (
+                {!hiddenCloseButton && (
                   <Button color="danger" onPress={onClose}>
                     Close
                   </Button>

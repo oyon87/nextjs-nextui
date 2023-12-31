@@ -44,4 +44,19 @@ const deleteProduct = async (id) => {
   return response;
 };
 
-export { getProducts, getDetailProduct, deleteProduct };
+const insertProduct = async (body) => {
+  const response = await fetch(`${PRODUCT_URL}/add`, {
+    method: "POST",
+    headers: getHeader(),
+    body: JSON.stringify(body),
+  }).then(async (res) => {
+    if (!res.ok) {
+      throw await res.json().then((error) => error.message);
+    }
+    return await res.json().then((response) => response);
+  });
+
+  return response;
+};
+
+export { getProducts, getDetailProduct, deleteProduct, insertProduct };
