@@ -16,8 +16,8 @@ function ProductForm({ form, setForm }) {
   };
 
   return (
-    <div className="flex gap-x-8">
-      <div className="w-1/2">
+    <div className="flex flex-col md:flex-row gap-x-8">
+      <div className="w-full md:w-1/2">
         <Input
           type="text"
           label="Product Name"
@@ -71,7 +71,7 @@ function ProductForm({ form, setForm }) {
           onChange={handleOnChange}
         />
       </div>
-      <div className="w-1/2">
+      <div className="w-full md:w-1/2">
         <Input
           type="number"
           label="Product Stock"
