@@ -10,9 +10,10 @@ import {
   Input,
   Tooltip,
   Link,
+  Button,
 } from "@nextui-org/react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEdit, faEye, faMagnifyingGlass, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
+import { faEdit, faEye, faMagnifyingGlass, faPlus, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import { useEffect, useState } from "react";
 
 function ProductTable({
@@ -36,17 +37,21 @@ function ProductTable({
 
   return (
     <>
-      <div className="mb-3 w-80">
+      <div className="mb-3 flex items-center justify-between">
         <Input
           value={search}
           type="text"
           // label="Search"
           placeholder="Type to search..."
+          className="w-96"
           size={size}
           startContent={<FontAwesomeIcon icon={faMagnifyingGlass} />}
           onChange={(e) => setSearchValue(e.target.value)}
           onKeyDown={handleKeyDown}
         />
+        <Button color="primary" startContent={<FontAwesomeIcon icon={faPlus} />}>
+          Add Product
+        </Button>
       </div>
       <Table
         aria-label={ariaLabel}
