@@ -55,7 +55,6 @@ function ProductTable({
           color="primary"
           onClick={() => router.push("/dashboard/products/create/")}
           startContent={<FontAwesomeIcon icon={faPlus} />}
-          s
         >
           Add Product
         </Button>

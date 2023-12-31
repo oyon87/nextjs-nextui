@@ -2,7 +2,8 @@
 
 import { useState, useEffect } from "react";
 import { usePathname, useRouter } from "next/navigation";
-import { Link } from "@nextui-org/react";
+// import { Link } from "@nextui-org/react";
+import Link from "next/link";
 import { listMenu } from "@/data/data";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faX, faBars, faHouse, faList, faAnglesLeft, faAnglesRight } from "@fortawesome/free-solid-svg-icons";
