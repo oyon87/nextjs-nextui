@@ -9,6 +9,7 @@ import ModalAlert from "@/components/ModalAlert/ModalAlert";
 import ImagesGallery from "@/components/ImagesGallery/ImagesGallery";
 import ProductDetailSkeleton from "./ui/ProductDetailSkeleton";
 import Rating from "@/components/Rating/Rating";
+import { getStateError } from "@/lib/error";
 
 function DetaisProductPage({ params }) {
   const router = useRouter();
@@ -24,11 +25,7 @@ function DetaisProductPage({ params }) {
       const product = await getDetailProduct(params.id);
       setProduct(product);
     } catch (error) {
-      setModal({
-        isOpen: true,
-        type: "login",
-        data: error,
-      });
+      setModal(setModal(getStateError(error)));
     }
   };
 

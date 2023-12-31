@@ -6,6 +6,7 @@ import { ROW_PER_PAGE } from "@/constant/pagination";
 import { startPage, totalPages } from "@/lib/pagination";
 import ProductTable from "@/app/dashboard/products/ui/ProductsTable";
 import ModalAlert from "@/components/ModalAlert/ModalAlert";
+import { getStateError } from "@/lib/error";
 
 function ProductListing() {
   const tableHeaders = ["TITLE", "BRAND", "CATEGORY", "PRICE", "STOCK"];
@@ -27,11 +28,7 @@ function ProductListing() {
       setDataProducts(products);
       setTotalPage(totalPages(products.total));
     } catch (error) {
-      setModal({
-        isOpen: true,
-        type: "login",
-        data: error,
-      });
+      setModal(getStateError(error));
     }
   };
 
@@ -60,11 +57,7 @@ function ProductListing() {
         data: product,
       });
     } catch (error) {
-      setModal({
-        isOpen: true,
-        type: "login",
-        data: error,
-      });
+      setModal(setModal(getStateError(error)));
     }
   };
 
