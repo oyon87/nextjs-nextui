@@ -99,8 +99,9 @@ function ProductTable({
                   <div className="relative flex items-center gap-3">
                     <Tooltip content="Details Product">
                       <Link
-                        href={`/dashboard/products/detail/${item.id}`}
+                        href="#"
                         className="text-lg text-default-400 cursor-pointer active:opacity-50"
+                        onClick={() => router.push(`/dashboard/products/detail/${item.id}`)}
                       >
                         <FontAwesomeIcon icon={faEye} />
                       </Link>
