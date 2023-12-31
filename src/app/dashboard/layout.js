@@ -2,7 +2,7 @@
 
 import { hasCookie } from "cookies-next";
 import { useEffect, useCallback } from "react";
-import { getAuthCookies } from "@/utility/cookies-next";
+import { getAuthCookies } from "@/lib/cookies-next";
 import { useLoginContext } from "@/contexts/login-context";
 
 // Components

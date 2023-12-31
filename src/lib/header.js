@@ -1,4 +1,4 @@
-import { getBarerAuthorization } from "@/utility/cookies-next";
+import { getBarerAuthorization } from "@/lib/cookies-next";
 
 const getHeader = () => {
   const header = {
