@@ -67,6 +67,7 @@ function ProductListing() {
 
   return (
     <div className="w-full">
+      <h1 className="text-xl mb-3">Product Listing</h1>
       <ProductTable
         ariaLabel="Products Table"
         tableHeaders={tableHeaders}

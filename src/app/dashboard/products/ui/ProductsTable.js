@@ -15,6 +15,7 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit, faEye, faMagnifyingGlass, faPlus, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 
 function ProductTable({
   ariaLabel = "Default Table",
@@ -30,6 +31,7 @@ function ProductTable({
 }) {
   const [data, setData] = useState({});
   const size = "sm";
+  const router = useRouter();
 
   useEffect(() => {
     setData(products);
@@ -49,7 +51,12 @@ function ProductTable({
           onChange={(e) => setSearchValue(e.target.value)}
           onKeyDown={handleKeyDown}
         />
-        <Button color="primary" startContent={<FontAwesomeIcon icon={faPlus} />}>
+        <Button
+          color="primary"
+          onClick={() => router.push("/dashboard/products/create/")}
+          startContent={<FontAwesomeIcon icon={faPlus} />}
+          s
+        >
           Add Product
         </Button>
       </div>
