@@ -13,6 +13,7 @@ import {
   DropdownMenu,
   User,
 } from "@nextui-org/react";
+import { useEffect } from "react";
 
 export default function NavbarMenu() {
   const router = useRouter();
@@ -25,6 +26,10 @@ export default function NavbarMenu() {
       router.push("/login");
     }
   };
+
+  useEffect(() => {
+    console.log("REDNDER");
+  }, []);
 
   return (
     <Navbar maxWidth="full">

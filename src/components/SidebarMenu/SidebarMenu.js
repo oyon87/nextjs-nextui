@@ -68,7 +68,7 @@ export default function SidebarMenu() {
                 href="#"
                 className="flex items-center hover:text-amber-500 hover:transition-all"
                 color={`${pathname === list.path ? "warning" : "foreground"}`}
-                isBlock
+                isBlock={true}
                 onClick={() => router.push(list.path)}
               >
                 <span>{renderIcon(list.icon)}</span>
