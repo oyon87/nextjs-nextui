@@ -66,11 +66,11 @@ export default function SidebarMenu() {
           return (
             <li className={"px-4 py-2 " + (isMobileOpen ? "" : "hidden")} key={index}>
               <Link
-                href="#"
+                href={list.path}
                 className="flex items-center hover:text-amber-500 hover:transition-all"
-                color={`${pathname === list.path ? "warning" : "foreground"}`}
-                isBlock={true}
-                onClick={() => router.push(list.path)}
+                // color={`${pathname === list.path ? "warning" : "foreground"}`}
+                // isBlock={true}
+                // onClick={() => router.push(list.path)}
               >
                 <span>{renderIcon(list.icon)}</span>
                 <span className={"pl-2 " + (isDesktopOpen ? "" : "hidden")}>{list.name}</span>
