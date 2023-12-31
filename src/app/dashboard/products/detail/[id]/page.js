@@ -5,11 +5,13 @@ import { useRouter } from "next/navigation";
 import { getDetailProduct } from "@/services/product/product";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
+import { getStateError } from "@/lib/error";
+import { discountCalculation } from "@/lib/formula";
+import { Chip } from "@nextui-org/react";
 import ModalAlert from "@/components/ModalAlert/ModalAlert";
 import ImagesGallery from "@/components/ImagesGallery/ImagesGallery";
 import ProductDetailSkeleton from "./ui/ProductDetailSkeleton";
 import Rating from "@/components/Rating/Rating";
-import { getStateError } from "@/lib/error";
 
 function DetaisProductPage({ params }) {
   const router = useRouter();
@@ -44,9 +46,15 @@ function DetaisProductPage({ params }) {
             <ImagesGallery images={product.images} />
           </div>
           <div className="col-span-4">
-            <h1 className="text-2xl font-bold">{product.title}</h1>
-            <h2 className="text-xl mb-3">${product.price}</h2>
-            <p>Brand: {product.brand}</p>
+            <h1 className="text-4xl font-bold">{product.title}</h1>
+            <h2 className="text-3xl">${discountCalculation(product.price, product.discountPercentage)}</h2>
+            <div className="flex gap-2 items-center">
+              <Chip color="danger" size="sm" variant="flat">
+                {product.discountPercentage}%
+              </Chip>
+              <span className="text-xl text-gray-400 line-through">${product.price}</span>
+            </div>
+            <p className="mt-3">Brand: {product.brand}</p>
             <p>Category: {product.category}</p>
             <p>Stock: {product.stock}</p>
             <Rating rating={product.rating} />
