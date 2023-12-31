@@ -5,10 +5,11 @@ import { logout } from "@/services/auth/auth";
 import { format } from "date-fns";
 
 export default function ModalAlert({ dataModal }) {
-  const size = "md";
-  const { isOpen, onOpen, onClose } = useDisclosure();
   const router = useRouter();
+  const { isOpen, onOpen, onClose } = useDisclosure();
   const [modal, setModal] = useState({});
+  const [closeButton, setCloseButton] = useState(true);
+  const size = "md";
 
   const setDataModal = (dataModal) => {
     const updateDataModal = {
@@ -51,6 +52,7 @@ export default function ModalAlert({ dataModal }) {
         break;
     }
 
+    hiddenCloseButton(dataModal.type);
     setModal(updateDataModal);
   };
 
@@ -99,16 +101,13 @@ export default function ModalAlert({ dataModal }) {
     }
   };
 
-  const hiddenCloseButton = (modal) => {
+  const hiddenCloseButton = (type) => {
     const defaultType = ["login", "insertSuccess"];
-    let result = true;
-    defaultType.map((type) => {
-      if (type === modal.type) {
-        result = true;
+    defaultType.map((def) => {
+      if (def === type) {
+        setCloseButton(false);
       }
     });
-
-    return result;
   };
 
   useEffect(() => {
@@ -125,7 +124,7 @@ export default function ModalAlert({ dataModal }) {
         onClose={onClose}
         size={size}
         isDismissable={false}
-        hideCloseButton={hiddenCloseButton ? true : false}
+        hideCloseButton={!closeButton ? true : false}
       >
         <ModalContent>
           {(onClose) => (
@@ -136,7 +135,7 @@ export default function ModalAlert({ dataModal }) {
               </ModalBody>
               <ModalFooter className="mx-auto">
                 {additionalButton(modal.type, modal.actions, modal.id)}
-                {!hiddenCloseButton && (
+                {closeButton && (
                   <Button color="danger" onPress={onClose}>
                     Close
                   </Button>
