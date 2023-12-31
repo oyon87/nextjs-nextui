@@ -2,6 +2,7 @@ import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDi
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { logout } from "@/services/auth/auth";
+import { format } from "date-fns";
 
 export default function ModalAlert({ dataModal }) {
   const size = "md";
@@ -32,6 +33,13 @@ export default function ModalAlert({ dataModal }) {
           body: `Are you sure you want to delete the ${dataModal.data.title}`,
         };
         updateDataModal.id = dataModal.data.id;
+        break;
+      case "deleteSuccess":
+        const dateFormat = format(dataModal.data.deletedOn, "dd MMMM yyyy, HH:mm");
+        updateDataModal.message = {
+          header: "DELETED COMPLETE",
+          body: `The ${dataModal.data.title} has been deleted on ${dateFormat}`,
+        };
         break;
       default:
         break;

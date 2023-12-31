@@ -1,6 +1,6 @@
 "use client";
 
-import { removeAuthCookies } from "@/utility/cookies-next";
+import { removeAuthCookies } from "@/lib/cookies-next";
 
 const authLogin = async (userName, password) => {
   const response = await fetch("/api/login", {

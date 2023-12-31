@@ -1,9 +1,9 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { getProducts } from "@/services/product/product";
+import { deleteProduct, getProducts } from "@/services/product/product";
 import { ROW_PER_PAGE } from "@/constant/pagination";
-import { startPage, totalPages } from "@/utility/pagination";
+import { startPage, totalPages } from "@/lib/pagination";
 import ProductTable from "@/app/dashboard/products/ui/ProductsTable";
 import ModalAlert from "@/components/ModalAlert/ModalAlert";
 
@@ -51,8 +51,21 @@ function ProductListing() {
     });
   };
 
-  const handleDelete = (id) => {
-    console.log("DELETE", id);
+  const handleDelete = async (id) => {
+    try {
+      const product = await deleteProduct(id);
+      setModal({
+        isOpen: true,
+        type: "deleteSuccess",
+        data: product,
+      });
+    } catch (error) {
+      setModal({
+        isOpen: true,
+        type: "login",
+        data: error,
+      });
+    }
   };
 
   useEffect(() => {
