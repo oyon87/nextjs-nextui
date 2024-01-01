@@ -52,8 +52,9 @@ function ProductTable({
           onKeyDown={handleKeyDown}
         />
         <Button
+          href="/dashboard/products/create/"
           color="primary"
-          onClick={() => router.push("/dashboard/products/create/")}
+          as={Link}
           startContent={<FontAwesomeIcon icon={faPlus} />}
         >
           Add Product
