@@ -8,11 +8,13 @@ const listMenu = [
     name: "Dashboard",
     path: "/dashboard",
     icon: "home",
+    pathParent: "/dashboard",
   },
   {
     name: "Products",
     path: "/dashboard/products",
     icon: "list",
+    pathParent: "/products",
   },
 ];
 

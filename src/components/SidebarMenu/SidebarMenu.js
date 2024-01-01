@@ -36,6 +36,14 @@ export default function SidebarMenu() {
     }
   };
 
+  const handleActive = (path) => {
+    if (pathname === "/dashboard" && pathname === path) {
+      return true;
+    }
+
+    return pathname.replace("/dashboard", "").startsWith(path);
+  };
+
   useEffect(() => {
     window.addEventListener("resize", () => {
       checkScreen();
@@ -66,7 +74,7 @@ export default function SidebarMenu() {
               <Link
                 href={list.path}
                 className="flex items-center hover:text-amber-500 hover:transition-all"
-                color={`${pathname === list.path ? "warning" : "foreground"}`}
+                color={`${handleActive(list.pathParent) ? "warning" : "foreground"}`}
                 isBlock={true}
               >
                 <span>{renderIcon(list.icon)}</span>
