@@ -58,14 +58,6 @@ function ProductTable({
         >
           Add Product
         </Button>
-        <Link
-          href="#"
-          className="text-lg text-default-400 cursor-pointer active:opacity-50"
-          onClick={() => router.push("/dashboard/products/create/")}
-        >
-          <FontAwesomeIcon icon={faPlus} />
-          Add Product
-        </Link>
       </div>
       <Table
         aria-label={ariaLabel}
@@ -106,9 +98,8 @@ function ProductTable({
                   <div className="relative flex items-center gap-3">
                     <Tooltip content="Details Product">
                       <Link
-                        href="#"
+                        href={`/dashboard/products/detail/${item.id}`}
                         className="text-lg text-default-400 cursor-pointer active:opacity-50"
-                        onClick={() => router.push(`/dashboard/products/detail/${item.id}`)}
                       >
                         <FontAwesomeIcon icon={faEye} />
                       </Link>

@@ -1,8 +1,9 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { usePathname, useRouter } from "next/navigation";
-import { Link } from "@nextui-org/react";
+import { usePathname } from "next/navigation";
+// import { Link } from "@nextui-org/react";
+import Link from "next/link";
 import { listMenu } from "@/data/data";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faX, faBars, faHouse, faList, faAnglesLeft, faAnglesRight } from "@fortawesome/free-solid-svg-icons";
@@ -13,7 +14,6 @@ export default function SidebarMenu() {
   const [isMobileOpen, setIsMobileOpen] = useState(true);
   const [isDesktopOpen, setIsDesktopOpen] = useState(true);
   const [isMobile, setIsMobile] = useState(false);
-  const router = useRouter();
 
   const checkScreen = () => {
     if (window.innerWidth >= SCREEN.TABLET) {
@@ -65,11 +65,10 @@ export default function SidebarMenu() {
           return (
             <li className={"px-4 py-2 " + (isMobileOpen ? "" : "hidden")} key={index}>
               <Link
-                href="#"
+                href={list.path}
                 className="flex items-center hover:text-amber-500 hover:transition-all"
-                color={`${pathname === list.path ? "warning" : "foreground"}`}
-                isBlock={true}
-                onClick={() => router.push(list.path)}
+                // color={`${pathname === list.path ? "warning" : "foreground"}`}
+                // isBlock={true}
               >
                 <span>{renderIcon(list.icon)}</span>
                 <span className={"pl-2 " + (isDesktopOpen ? "" : "hidden")}>{list.name}</span>
@@ -77,17 +76,6 @@ export default function SidebarMenu() {
             </li>
           );
         })}
-        <li className={"px-4 py-2 " + (isMobileOpen ? "" : "hidden")} key={index}>
-          <Link
-            href={"/dashboard/products/detail/1"}
-            className="flex items-center hover:text-amber-500 hover:transition-all"
-            color={`${pathname === list.path ? "warning" : "foreground"}`}
-            isBlock={true}
-          >
-            <span>{renderIcon(list.icon)}</span>
-            <span className={"pl-2 " + (isDesktopOpen ? "" : "hidden")}>{list.name}</span>
-          </Link>
-        </li>
       </ul>
     </div>
   );
