@@ -2,8 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
-// import { Link } from "@nextui-org/react";
-import Link from "next/link";
+import { Link } from "@nextui-org/react";
 import { listMenu } from "@/data/data";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faX, faBars, faHouse, faList, faAnglesLeft, faAnglesRight } from "@fortawesome/free-solid-svg-icons";
@@ -67,8 +66,8 @@ export default function SidebarMenu() {
               <Link
                 href={list.path}
                 className="flex items-center hover:text-amber-500 hover:transition-all"
-                // color={`${pathname === list.path ? "warning" : "foreground"}`}
-                // isBlock={true}
+                color={`${pathname === list.path ? "warning" : "foreground"}`}
+                isBlock={true}
               >
                 <span>{renderIcon(list.icon)}</span>
                 <span className={"pl-2 " + (isDesktopOpen ? "" : "hidden")}>{list.name}</span>
