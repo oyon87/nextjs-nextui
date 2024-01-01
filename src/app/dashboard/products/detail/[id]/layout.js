@@ -1,7 +1,11 @@
+"use client";
+
+import HeaderLayout from "@/components/HeaderLayout/HeaderLayout";
+
 function ProductDetailLayout({ children }) {
   return (
     <>
-      <h1 className="text-xl mb-3">Product Detail</h1>
+      <HeaderLayout title={"Product Detail"} />
       {children}
     </>
   );

@@ -1,10 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
 import { getDetailProduct } from "@/services/product/product";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { getStateError } from "@/lib/error";
 import { discountCalculation } from "@/lib/formula";
 import { Chip } from "@nextui-org/react";
@@ -14,7 +11,6 @@ import ProductDetailSkeleton from "./ui/ProductDetailSkeleton";
 import Rating from "@/components/Rating/Rating";
 
 function DetaisProductPage({ params }) {
-  const router = useRouter();
   const [product, setProduct] = useState({});
   const [modal, setModal] = useState({
     isOpen: false,
@@ -39,9 +35,6 @@ function DetaisProductPage({ params }) {
     <>
       {product.title ? (
         <div className="relative grid grid-cols-1 md:grid-cols-6 gap-y-5 md:gap-5 mb-10">
-          <a href="#" onClick={() => router.back()} className="absolute -top-9 right-0 md:top-0 md:right-4 ">
-            <FontAwesomeIcon icon={faArrowLeft} />
-          </a>
           <div className="col-span-2">
             <ImagesGallery images={product.images} />
           </div>

@@ -1,3 +1,5 @@
+"use client";
+
 function ProductsLayout({ children }) {
   return <>{children}</>;
 }
