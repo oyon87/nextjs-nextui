@@ -77,6 +77,17 @@ export default function SidebarMenu() {
             </li>
           );
         })}
+        <li className={"px-4 py-2 " + (isMobileOpen ? "" : "hidden")} key={index}>
+          <Link
+            href={"/dashboard/products/detail/1"}
+            className="flex items-center hover:text-amber-500 hover:transition-all"
+            color={`${pathname === list.path ? "warning" : "foreground"}`}
+            isBlock={true}
+          >
+            <span>{renderIcon(list.icon)}</span>
+            <span className={"pl-2 " + (isDesktopOpen ? "" : "hidden")}>{list.name}</span>
+          </Link>
+        </li>
       </ul>
     </div>
   );
