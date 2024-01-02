@@ -20,7 +20,7 @@ export default function Login() {
       await authLogin(userName, password);
       setIsError(false);
       setIsLoading(true);
-      router.push("/dashboard");
+      router.push("/dashboard/home");
     } catch (error) {
       setIsError(true);
       setIsLoading(false);
