@@ -28,7 +28,7 @@ export default function NavbarMenu() {
   };
 
   useEffect(() => {
-    console.log("REDNDER");
+    // console.log("REDNDER");
   }, []);
 
   return (
