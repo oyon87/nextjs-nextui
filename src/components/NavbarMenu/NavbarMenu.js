@@ -27,10 +27,6 @@ export default function NavbarMenu() {
     }
   };
 
-  useEffect(() => {
-    // console.log("REDNDER");
-  }, []);
-
   return (
     <Navbar maxWidth="full">
       <NavbarBrand>
@@ -38,7 +34,7 @@ export default function NavbarMenu() {
       </NavbarBrand>
 
       <NavbarContent as="div" justify="end">
-        <Dropdown placement="bottom-end">
+        <Dropdown placement="bottom-end" key={login.id}>
           <DropdownTrigger>
             <User
               name={login.email}
