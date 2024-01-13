@@ -66,7 +66,7 @@ export default function SidebarMenu() {
               <Link
                 href={list.path}
                 className="flex items-center hover:text-amber-500 hover:transition-all"
-                color={`${list.path.startsWith(pathname) ? "warning" : "foreground"}`}
+                color={`${pathname.startsWith(list.path) ? "warning" : "foreground"}`}
                 isBlock={true}
               >
                 <span>{renderIcon(list.icon)}</span>
