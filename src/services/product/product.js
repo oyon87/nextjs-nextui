@@ -9,7 +9,9 @@ const getProducts = async (limit, skip, search) => {
     headers: getHeader(),
   }).then(async (res) => {
     if (!res.ok) {
-      throw await res.json().then((error) => error.message);
+      throw await res.json().then((error) => {
+        return { message: error.message, status: res.status };
+      });
     }
     return await res.json().then((response) => response);
   });
@@ -22,7 +24,9 @@ const getDetailProduct = async (id) => {
     headers: getHeader(),
   }).then(async (res) => {
     if (!res.ok) {
-      throw await res.json().then((error) => error.message);
+      throw await res.json().then((error) => {
+        return { message: error.message, status: res.status };
+      });
     }
     return await res.json().then((response) => response);
   });
@@ -36,7 +40,9 @@ const deleteProduct = async (id) => {
     headers: getHeader(),
   }).then(async (res) => {
     if (!res.ok) {
-      throw await res.json().then((error) => error.message);
+      throw await res.json().then((error) => {
+        return { message: error.message, status: res.status };
+      });
     }
     return await res.json().then((response) => response);
   });
@@ -51,7 +57,9 @@ const insertProduct = async (body) => {
     body: JSON.stringify(body),
   }).then(async (res) => {
     if (!res.ok) {
-      throw await res.json().then((error) => error.message);
+      throw await res.json().then((error) => {
+        return { message: error.message, status: res.status };
+      });
     }
     return await res.json().then((response) => response);
   });
@@ -59,4 +67,24 @@ const insertProduct = async (body) => {
   return response;
 };
 
-export { getProducts, getDetailProduct, deleteProduct, insertProduct };
+const updateProduct = async (body) => {
+  const id = body.id;
+  delete body.id;
+
+  const response = await fetch(`${PRODUCT_URL}/${id}`, {
+    method: "PUT",
+    headers: getHeader(),
+    body: JSON.stringify(body),
+  }).then(async (res) => {
+    if (!res.ok) {
+      throw await res.json().then((error) => {
+        return { message: error.message, status: res.status };
+      });
+    }
+    return await res.json().then((response) => response);
+  });
+
+  return response;
+};
+
+export { getProducts, getDetailProduct, deleteProduct, insertProduct, updateProduct };

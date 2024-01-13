@@ -21,7 +21,6 @@ function DashboardLayout({ children }) {
 
   useEffect(() => {
     setLoginContext();
-    console.log("AUTH JALAN");
   }, []);
 
   return (

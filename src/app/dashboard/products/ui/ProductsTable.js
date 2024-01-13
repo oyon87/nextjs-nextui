@@ -15,7 +15,6 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit, faEye, faMagnifyingGlass, faPlus, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
 
 function ProductTable({
   ariaLabel = "Default Table",
@@ -31,7 +30,6 @@ function ProductTable({
 }) {
   const [data, setData] = useState({});
   const size = "sm";
-  const router = useRouter();
 
   useEffect(() => {
     setData(products);
@@ -105,11 +103,14 @@ function ProductTable({
                         <FontAwesomeIcon icon={faEye} />
                       </Link>
                     </Tooltip>
-                    {/* <Tooltip content="Edit Product">
-                      <span className="text-lg text-default-400 cursor-pointer active:opacity-50">
+                    <Tooltip content="Edit Product">
+                      <Link
+                        href={`/dashboard/products/edit/${item.id}`}
+                        className="text-lg text-default-400 cursor-pointer active:opacity-50"
+                      >
                         <FontAwesomeIcon icon={faEdit} />
-                      </span>
-                    </Tooltip>*/}
+                      </Link>
+                    </Tooltip>
                     <Tooltip color="danger" content="Delete Product">
                       <span
                         className="text-lg text-danger cursor-pointer active:opacity-50"

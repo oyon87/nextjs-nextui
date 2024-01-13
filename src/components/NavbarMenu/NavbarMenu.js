@@ -13,7 +13,6 @@ import {
   DropdownMenu,
   User,
 } from "@nextui-org/react";
-import { useEffect } from "react";
 
 export default function NavbarMenu() {
   const router = useRouter();

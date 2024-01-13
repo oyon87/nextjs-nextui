@@ -21,7 +21,8 @@ export default function ModalAlert({ dataModal }) {
     };
 
     switch (dataModal.type) {
-      case "login":
+      case 403:
+      case 404:
         updateDataModal.message = {
           header: "ERROR",
           body: dataModal.data,
@@ -48,6 +49,12 @@ export default function ModalAlert({ dataModal }) {
           body: `The ${dataModal.data.title} has been created`,
         };
         break;
+      case "updateSuccess":
+        updateDataModal.message = {
+          header: "EDIT PRODUCT COMPLETE",
+          body: `The ${dataModal.data.title} has been edited`,
+        };
+        break;
       default:
         break;
     }
@@ -58,7 +65,7 @@ export default function ModalAlert({ dataModal }) {
 
   const additionalButton = (type, actions, id) => {
     switch (type) {
-      case "login":
+      case 403:
         return (
           <Button color="primary" onPress={actions}>
             Login
@@ -77,6 +84,7 @@ export default function ModalAlert({ dataModal }) {
           </Button>
         );
       case "insertSuccess":
+      case "updateSuccess":
         return (
           <Button
             color="primary"
@@ -102,7 +110,7 @@ export default function ModalAlert({ dataModal }) {
   };
 
   const hiddenCloseButton = (type) => {
-    const defaultType = ["login", "insertSuccess"];
+    const defaultType = [403, "insertSuccess", "updateSuccess"];
     defaultType.map((def) => {
       if (def === type) {
         setCloseButton(false);
