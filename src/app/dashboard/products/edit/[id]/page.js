@@ -5,6 +5,7 @@ import ProductForm from "../../ui/ProductForm";
 import { getStateError } from "@/lib/error";
 import { getDetailProduct, updateProduct } from "@/services/product/product";
 import { useEffect, useState } from "react";
+import { Spinner } from "@nextui-org/react";
 
 function ProductEditPage({ params }) {
   const [product, setProduct] = useState({
@@ -51,7 +52,13 @@ function ProductEditPage({ params }) {
 
   return (
     <>
-      <ProductForm form={product} setForm={setProduct} handleSubmit={handleSubmit} textButton="Update Product" />
+      {product.title ? (
+        <ProductForm form={product} setForm={setProduct} handleSubmit={handleSubmit} textButton="Update Product" />
+      ) : (
+        <div className="flex justify-center">
+          <Spinner label="Loading..." size="lg" />
+        </div>
+      )}
       <ModalAlert dataModal={modal} />
     </>
   );
