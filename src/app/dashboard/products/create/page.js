@@ -1,14 +1,12 @@
 "use client";
 
 import { useState } from "react";
-import { Button } from "@nextui-org/react";
 import { insertProduct } from "@/services/product/product";
 import { getStateError } from "@/lib/error";
 import ProductForm from "../ui/ProductForm";
 import ModalAlert from "@/components/ModalAlert/ModalAlert";
 
 function ProductCreatePage() {
-  const size = "md";
   const [modal, setModal] = useState({
     isOpen: false,
     type: "",
@@ -40,14 +38,7 @@ function ProductCreatePage() {
 
   return (
     <>
-      <form action={handleSubmit}>
-        <ProductForm form={form} setForm={setForm} />
-        <div className="flex justify-center mt-5">
-          <Button type="submit" color="primary" size={size}>
-            Create Product
-          </Button>
-        </div>
-      </form>
+      <ProductForm form={form} setForm={setForm} handleSubmit={handleSubmit} textButton="Create Product" />
       <ModalAlert dataModal={modal} />
     </>
   );

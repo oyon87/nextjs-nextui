@@ -5,10 +5,8 @@ import ProductForm from "../../ui/ProductForm";
 import { getStateError } from "@/lib/error";
 import { getDetailProduct, updateProduct } from "@/services/product/product";
 import { useEffect, useState } from "react";
-import { Button } from "@nextui-org/react";
 
 function ProductEditPage({ params }) {
-  const size = "md";
   const [product, setProduct] = useState({
     title: "",
     price: 0,
@@ -53,14 +51,7 @@ function ProductEditPage({ params }) {
 
   return (
     <>
-      <form action={handleSubmit}>
-        <ProductForm form={product} setForm={setProduct} />
-        <div className="flex justify-center mt-5">
-          <Button type="submit" color="primary" size={size}>
-            Edit Product
-          </Button>
-        </div>
-      </form>
+      <ProductForm form={product} setForm={setProduct} handleSubmit={handleSubmit} textButton="Update Product" />
       <ModalAlert dataModal={modal} />
     </>
   );
