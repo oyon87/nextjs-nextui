@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import { Link } from "@nextui-org/react";
 import { listMenu } from "@/data/data";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faX, faBars, faHouse, faList, faAnglesLeft, faAnglesRight } from "@fortawesome/free-solid-svg-icons";
+import { faX, faBars, faHouse, faBox, faAnglesLeft, faAnglesRight } from "@fortawesome/free-solid-svg-icons";
 import { SCREEN } from "@/constant/deault";
 
 export default function SidebarMenu() {
@@ -30,7 +30,7 @@ export default function SidebarMenu() {
       case "home":
         return <FontAwesomeIcon icon={faHouse} />;
       case "list":
-        return <FontAwesomeIcon icon={faList} />;
+        return <FontAwesomeIcon icon={faBox} />;
       default:
         return icon;
     }
